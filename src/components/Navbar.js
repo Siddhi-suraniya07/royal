@@ -42,9 +42,13 @@ export default function Navbar() {
 
           {/* Right Side Nav */}
           <div className="col-4 d-flex justify-content-end gap-5">
-            <Link href="/our-essence" className={`nav-link nav-item fw-semibold fs-8   ${isActive('/our-essence') ? 'active-link' : ''}`}>
-              OUR ESSENCE
-            </Link>
+            <Link
+  href="/our-essence"
+  className={`nav-link ${isActive('/our-essence') ? 'active-link' : ''}`}
+>
+  OUR ESSENCE
+</Link>
+
             <Link href="/featured-products" className={`nav-link nav-item fw-semibold fs-8  ${isActive('/featured-products') ? 'active-link' : ''}`}>
               FEATURED PRODUCTS
             </Link>

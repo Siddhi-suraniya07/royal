@@ -9,7 +9,7 @@ export default function RoyalPromise() {
       <section
         className="d-flex flex-column justify-content-center align-items-center text-center"
         style={{
-          minHeight: '80vh',
+          minHeight: '60vh',
           paddingTop: '120px',
           position: 'relative',
           backgroundColor: '#fff',
@@ -89,14 +89,15 @@ export default function RoyalPromise() {
     minHeight: '170vh',
     position: 'relative',
     borderRadius: '30px',
-    overflow: 'hidden',      // <-- add this
+    overflow: 'hidden',
     top: '-50px',
   }}
 >
+  {/* Background Image */}
   <div
     style={{
       position: 'absolute',
-      top: '-20px',  // can keep this to shift bg image upward
+      top: '-20px',
       left: 0,
       right: 0,
       bottom: 0,
@@ -106,37 +107,93 @@ export default function RoyalPromise() {
       backgroundRepeat: 'no-repeat',
       borderRadius: '30px',
       zIndex: -1,
-       opacity: 0.5, 
+      opacity: 0.5,
     }}
   ></div>
 
-
   <div className="container">
-    {/* Your inner content (like image + text column) will go here */}
     <div className="row">
+      {/* Left Image */}
       <div className="col-md-4 d-flex justify-content-center">
-        {/* Left image or artwork */}
         <img
-          src="/image5.png" // Replace with your circular art image
+          src="/image5.png"
           alt="Royal Promise Art"
           className="img-fluid"
           style={{
             width: '455px',
             height: '492px',
             objectFit: 'cover',
-            borderRadius:'200px',
-             position: 'relative',        // <-- make position relative so margin works
-    marginTop: '-400px',          // <-- move image upwards
-    marginLeft: '150px',   
+            borderRadius: '200px',
+            position: 'relative',
+            marginTop: '-2px',
+            marginLeft: '80px',
           }}
         />
-        
       </div>
-      
-       
+
+      {/* Right Text Section */}
+      <div className="col-md-8">
+  <div className="ps-md-5 pt-5">
+    {/* Text Block Repeated */}
+    {[
+      {
+        title: 'TIME–TESTED FORMULAS DERIVED FROM ANCIENT SCIENCES AND SCRIPTURES',
+        desc: 'Rooted in Ayurveda and proven through generations of ritual wisdom.',
+      },
+      {
+        title: 'HIGH–QUALITY, ORGANIC INGREDIENTS FOR OPTIMAL EFFICACY',
+        desc: 'Sourced from certified farms to ensure purity and potency in every drop.',
+      },
+      {
+        title: 'ECO–FRIENDLY MANUFACTURING PROCESSES',
+        desc: 'Produced in small batches using local ingredients, seasonal methods.',
+      },
+      {
+        title: 'CRUELTY–FREE AND SUSTAINABLE PRACTICES',
+        desc: 'All products are ethically sourced—never tested on animals, always kind to the Earth.',
+      },
+      {
+        title: 'ECO–FRIENDLY MANUFACTURING PROCESSES',
+        desc: 'Produced in small batches using local ingredients, seasonal methods.',
+      },
+      {
+        title: 'CRUELTY–FREE AND SUSTAINABLE PRACTICES',
+        desc: 'All products are ethically sourced—never tested on animals, always kind to the Earth.',
+      },
+    ].map((item, idx) => (
+      <div key={idx} className="mb-4">
+        {/* Decorative Icon */}
+        <div className="mb-2">
+          <img src="/dot.png" alt="Design" style={{ width: '12px' }} />
+        </div>
+
+        {/* Title */}
+        <h6 style={{ color: '#B48338', fontWeight: '600', fontSize: '13px' }}>
+          {item.title}
+        </h6>
+
+        {/* Description */}
+        <ul className="mt-2 ps-3">
+          <li style={{ fontSize: '13px', color: '#333' }}>{item.desc}</li>
+        </ul>
+
+        {/* Divider Line */}
+        <div className="my-3">
+          <img
+            src="/line.png"
+            alt="Divider"
+            style={{ height: '60px', width: '1px' }}
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
     </div>
   </div>
 </section>
+
 
     </>
   );
