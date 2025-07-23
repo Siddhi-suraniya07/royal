@@ -127,7 +127,7 @@ export default function OurEssence() {
     {/* Left Image */}
     <div style={{ flex: 1 }}>
       <img
-        src="/O1.png" // <- Replace with your actual image path
+        src="/o1.png" // <- Replace with your actual image path
         alt="Creative Artistic Description"
         style={{
           width: '100%',
@@ -210,7 +210,7 @@ export default function OurEssence() {
     {/* Left Image */}
     <div style={{ flex: 1 }}>
       <img
-        src="/O1.png" // <- Replace with your actual image path
+        src="/o1.png" // <- Replace with your actual image path
         alt="Creative Artistic Description"
         style={{
           width: '100%',
