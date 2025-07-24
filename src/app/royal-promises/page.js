@@ -125,7 +125,7 @@ export default function RoyalPromise() {
             objectFit: 'cover',
             borderRadius: '200px',
             position: 'relative',
-            marginTop: '-2px',
+            marginTop: '100px',
             marginLeft: '80px',
           }}
         />

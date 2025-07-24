@@ -4,18 +4,51 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import '../styles/Navbar.css'; // keep your custom styles if needed
+import React, { useState } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ children }) {
   const pathname = usePathname();
   const isActive = (path) => pathname === path;
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    setCartOpen((open) => !open);
+  };
+  const handleCloseCart = () => setCartOpen(false);
+
+  // Add to cart handler
+  const handleAddToCart = (product) => {
+    setCartItems((prev) => {
+      const idx = prev.findIndex((item) => item.title === product.title);
+      if (idx !== -1) {
+        // Already in cart, increment quantity
+        const updated = [...prev];
+        updated[idx].qty += 1;
+        return updated;
+      }
+      return [...prev, { ...product, qty: 1 }];
+    });
+    setCartOpen(true);
+  };
+  const handleRemoveItem = (title) => {
+    setCartItems((prev) => prev.filter((item) => item.title !== title));
+  };
+  const handleClearCart = () => setCartItems([]);
+  const handleQtyChange = (title, delta) => {
+    setCartItems((prev) => prev.map((item) =>
+      item.title === title ? { ...item, qty: Math.max(1, item.qty + delta) } : item
+    ));
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom py-1 fixed-top">
-      <div className="container-fluid px-5">
-        <div className="row w-100 align-items-center">
+    <>
+      <nav className="navbar navbar-expand-lg bg-white border-bottom py-1 fixed-top">
+        <div className="container-fluid px-5">
+          <div className="row w-100 align-items-center">
 
-          {/* Left Side Nav */}
-          <div className="col-4 d-flex justify-content-start gap-4 align-items-center">
+            {/* Left Side Nav */}
+            <div className="col-4 d-flex justify-content-start gap-4 align-items-center">
   <Link href="/" className={`nav-link nav-item fw-semibold fs-6 nudge-right ${isActive('/') ? 'active-link' : ''}`}>
   ROYAL HOME
 </Link>
@@ -27,21 +60,21 @@ export default function Navbar() {
 
 
 
-          {/* Center Logo */}
-          <div className="col-4 d-flex justify-content-center">
-            <Link href="/" className="navbar-brand mx-auto">
-              <Image
-                src="/royal-logo.png"
-                alt="Royal Logo"
-                width={50}
-                height={50}
-                style={{ objectFit: 'contain' }}
-              />
-            </Link>
-          </div>
+            {/* Center Logo */}
+            <div className="col-4 d-flex justify-content-center">
+              <Link href="/" className="navbar-brand mx-auto">
+                <Image
+                  src="/royal-logo.png"
+                  alt="Royal Logo"
+                  width={50}
+                  height={50}
+                  style={{ objectFit: 'contain' }}
+                />
+              </Link>
+            </div>
 
-          {/* Right Side Nav */}
-          <div className="col-4 d-flex justify-content-end gap-5">
+            {/* Right Side Nav */}
+            <div className="col-4 d-flex justify-content-end gap-5 position-relative">
             <Link
   href="/our-essence"
   className={`nav-link ${isActive('/our-essence') ? 'active-link' : ''}`}
@@ -55,13 +88,105 @@ export default function Navbar() {
             <Link href="#" className="nav-link nav-icon">
               <i className="bi bi-person fs-5"></i>
             </Link>
-            <Link href="#" className="nav-link nav-icon">
+            <button
+              className="nav-link nav-icon bg-transparent border-0 p-0"
+              style={{ outline: 'none', boxShadow: 'none' }}
+              onClick={handleCartClick}
+              aria-label="Open cart"
+            >
               <i className="bi bi-cart fs-5"></i>
-            </Link>
-          </div>
+            </button>
+             {cartOpen && (
+               <div
+                 className="cart-popup position-absolute"
+                 style={{
+                   top: '48px',
+                   right: 0,
+                   minWidth: '340px',
+                   background: '#fff',
+                   borderRadius: '18px',
+                   boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+                   zIndex: 9999,
+                   padding: '1.5rem 1.5rem 1.2rem 1.5rem',
+                   color: '#2c1e1e',
+                   maxWidth: '95vw',
+                 }}
+               >
+                 <button
+                   onClick={handleCloseCart}
+                   style={{
+                     position: 'absolute',
+                     top: '10px',
+                     right: '14px',
+                     background: 'none',
+                     border: 'none',
+                     fontSize: '1.2rem',
+                     color: '#888',
+                     cursor: 'pointer',
+                   }}
+                   aria-label="Close cart"
+                 >
+                   &times;
+                 </button>
+                 <div style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.5rem', color: '#5c0b28' }}>
+                   SHOPPING CART
+                 </div>
+                 <div style={{ fontSize: '0.98rem', color: '#444', marginBottom: '1.2rem' }}>
+                   {cartItems.length === 0 ? (
+                     <>Your Cart is Currently Empty.</>
+                   ) : (
+                     <>
+                       Currently {cartItems.reduce((sum, item) => sum + item.qty, 0)} Item{cartItems.reduce((sum, item) => sum + item.qty, 0) > 1 ? 's' : ''} Were Added in Cart
+                     </>
+                   )}
+                 </div>
+                 {cartItems.length > 0 && (
+                   <div style={{ maxHeight: '220px', overflowY: 'auto', marginBottom: '1rem' }}>
+                     {cartItems.map((item, idx) => (
+                       <div key={item.title} className="d-flex align-items-center mb-3" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                         <img src={item.image} alt={item.title} style={{ width: 54, height: 54, borderRadius: 8, objectFit: 'cover', marginRight: 12 }} />
+                         <div className="flex-grow-1">
+                           <div style={{ fontWeight: 600, fontSize: '1rem', color: '#5c0b28' }}>{item.title}</div>
+                           <div style={{ fontSize: '0.98rem', color: '#444' }}>{item.price}</div>
+                           <div className="d-flex align-items-center mt-1">
+                             <button className="btn btn-sm btn-outline-secondary px-2 py-0 me-1" style={{ fontSize: '0.9rem', borderRadius: '50%' }} onClick={() => handleQtyChange(item.title, -1)}>-</button>
+                             <span style={{ minWidth: 22, textAlign: 'center' }}>{item.qty}</span>
+                             <button className="btn btn-sm btn-outline-secondary px-2 py-0 ms-1" style={{ fontSize: '0.9rem', borderRadius: '50%' }} onClick={() => handleQtyChange(item.title, 1)}>+</button>
+                             <button className="btn btn-sm btn-link text-danger ms-2" style={{ fontSize: '0.9rem' }} onClick={() => handleRemoveItem(item.title)}>&times;</button>
+                           </div>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                 )}
+                 {cartItems.length > 0 && (
+                   <div className="text-center mb-2">
+                     <button className="btn btn-link text-danger p-0" style={{ fontSize: '0.95rem' }} onClick={handleClearCart}>Clear All Items</button>
+                   </div>
+                 )}
+                 <Link
+                   href="/featured-products"
+                   className="btn btn-dark w-100"
+                   style={{
+                     background: '#5c0b28',
+                     color: '#fff',
+                     borderRadius: '22px',
+                     fontWeight: 500,
+                     fontSize: '1rem',
+                     padding: '8px 0',
+                   }}
+                 >
+                   VIEW PRODUCTS
+                 </Link>
+               </div>
+             )}
+            </div>
 
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      {/* Pass onAddToCart to children if present */}
+      {children && React.cloneElement(children, { onAddToCart: handleAddToCart })}
+    </>
   );
 }

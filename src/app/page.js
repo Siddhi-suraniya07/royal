@@ -4,7 +4,7 @@ import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
-export default function HomePage() {
+export default function HomePage({ onAddToCart }) {
   // --- Carousel Data and State ---
   const SECTIONS = [
     {
@@ -507,9 +507,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="d-flex justify-content-between w-100 px-4 mt-2">
-                    <Link href="/featured-products" passHref legacyBehavior>
-                      <a className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</a>
-                    </Link>
+                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
                     <div className="text-end">
                       <strong>{card.price}</strong>
                       <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
