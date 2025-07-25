@@ -33,5 +33,193 @@
   text-underline-offset: 4px; 
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    min-height: 56px;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .navbar .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .navbar .navbar-toggler {
+    display: block !important;
+  }
+  .nav-links-left,
+  .nav-links-right {
+    display: none !important;
+    position: absolute;
+    left: 0;
+    top: 56px;
+    width: 100vw;
+    background: #fff;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    z-index: 1052;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  }
+  .nav-links-left.show-mobile,
+  .nav-links-right.show-mobile {
+    display: flex !important;
+  }
+  .nav-links-left {
+    top: 56px;
+  }
+  .nav-links-right {
+    top: calc(56px + 60px);
+  }
+  .navbar .col-4.d-flex.justify-content-center {
+    justify-content: center !important;
+    z-index: 1053;
+  }
+  .navbar .navbar-brand img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .navbar .nav-link, .navbar .nav-item {
+    font-size: 1.05rem !important;
+    padding: 0.7rem 0 !important;
+    margin: 0 !important;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  .navbar .nav-icon {
+    font-size: 1.2rem !important;
+    padding: 0.5rem 0 !important;
+  }
+  .nudge-right, .nudge-rig {
+    padding-left: 0 !important;
+  }
+  .cart-popup.position-absolute {
+    min-width: 95vw !important;
+    right: 2vw !important;
+    left: unset !important;
+    margin: 0 !important;
+  }
+  .mobile-nav-overlay {
+    display: block !important;
+  }
+  .navbar .col-4.d-flex.nav-links-left,
+  .navbar .col-4.d-flex.nav-links-right {
+    display: none !important;
+  }
+  .navbar .navbar-toggler {
+    display: block !important;
+  }
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 16px rgba(0,0,0,0.08);
+    z-index: 2001;
+    transition: right 0.3s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+  }
+  .mobile-drawer.open {
+    right: 0;
+    pointer-events: auto;
+  }
+  .drawer-content {
+    padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+  }
+  .drawer-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .drawer-link {
+    font-size: 1.1rem;
+    color: #4C0A2E;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    display: block;
+    font-weight: 500;
+  }
+  .drawer-link:last-child {
+    border-bottom: none;
+  }
+  .drawer-link.active-link {
+    color: #b88e2f !important;
+    text-decoration: underline;
+  }
+  .drawer-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #4C0A2E;
+    z-index: 10;
+  }
+  .drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.18);
+    z-index: 2000;
+    transition: opacity 0.3s;
+  }
+  .drawer-cart {
+    background: none;
+    border: none;
+    color: #4C0A2E;
+    font-size: 1.1rem;
+    text-align: left;
+    width: 100%;
+    padding: 0.8rem 0;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar .navbar-toggler {
+    display: none !important;
+  }
+  .nav-links-left,
+  .nav-links-right {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+  .mobile-drawer,
+  .drawer-backdrop {
+    display: none !important;
+  }
+  .navbar .col-4.d-flex.nav-links-left,
+  .navbar .col-4.d-flex.nav-links-right {
+    display: flex !important;
+  }
+}
+
 
 

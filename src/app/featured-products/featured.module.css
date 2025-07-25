@@ -35,3 +35,76 @@
 .backgroundImage {
   z-index: 0;
 }
+@media (max-width: 600px) {
+  .heroSection {
+    height: 340px !important;
+    width: 100vw !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .arrowWrapper {
+    bottom: 12px !important;
+  }
+  .arrow {
+    width: 38px !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    font-size: 20px !important;
+  }
+  .ornament {
+    width: 38px !important;
+    height: 60px !important;
+  }
+  /* Card grid and card styles */
+  .container {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  .row.gy-4 {
+    gap: 0 !important;
+  }
+  .card {
+    width: 98vw !important;
+    max-width: 98vw !important;
+    min-width: 0 !important;
+    height: 180px !important;
+    min-height: 120px !important;
+    border-radius: 10px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+    padding: 0 !important;
+  }
+  .card h5 {
+    font-size: 0.98rem !important;
+    margin-bottom: 2px !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+  }
+  .card p {
+    font-size: 0.85rem !important;
+    margin-bottom: 4px !important;
+    padding-left: 0 !important;
+  }
+  .btn.btn-sm {
+    width: 100% !important;
+    max-width: 98vw !important;
+    min-width: 0 !important;
+    font-size: 0.98rem !important;
+    padding: 7px 0 !important;
+    border-radius: 16px !important;
+    margin-bottom: 2px !important;
+    margin-top: 6px !important;
+  }
+  .d-flex.justify-content-between.w-100.px-2.px-md-4.mt-2 {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 0 6px !important;
+    gap: 4px !important;
+  }
+  .text-end {
+    text-align: left !important;
+    font-size: 0.92rem !important;
+  }
+}

@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
 export default function HomePage({ onAddToCart }) {
-  // --- Carousel Data and State ---
+  
   const SECTIONS = [
     {
       key: "body-therapy",
@@ -216,16 +216,78 @@ export default function HomePage({ onAddToCart }) {
           .custom-overlay-text {
             max-width: 90%;
             right: 1rem;
-            left: 1rem;
-            font-size: 1.3rem;
-            line-height: 2rem;
+            left: 5rem;
+            font-size: 0.2rem;
+            line-height: 0.2rem;
           }
         }
 
         @media (max-width: 480px) {
           .custom-overlay-text {
-            font-size: 1.1rem;
-            line-height: 1.6rem;
+            font-size: 0.2rem;
+            line-height: 0.5rem;
+          }
+        }
+      `}</style>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          #our-essence {
+            padding-top: 80px !important;
+            padding-bottom: 80px !important;
+            margin-top: 40px !important;
+            margin-bottom: 40px !important;
+          }
+          #our-essence .container {
+            max-width: 100vw !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          #our-essence .row {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            gap: 0 !important;
+            min-width: 960px !important;
+            width: 960px !important;
+          }
+          #our-essence .col-12.col-md-4 {
+            max-width: 33.3333% !important;
+            min-width: 320px !important;
+            flex: 0 0 33.3333% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+          }
+          #our-essence h2 {
+            font-size: 2rem !important;
+            color: #61003C !important;
+            font-weight: 600 !important;
+          }
+          #our-essence p {
+            font-size: 1.1rem !important;
+            color: #6B4A18 !important;
+          }
+          #our-essence .fst-italic {
+            font-size: 1rem !important;
+          }
+          #our-essence .btn {
+            border-radius: 25px !important;
+            font-size: 1rem !important;
+            padding: 0.5rem 1.5rem !important;
+          }
+          #our-essence [style*='background-image'] {
+            height: 410px !important;
+            width: 310px !important;
+            border-radius: 12px !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
           }
         }
       `}</style>
@@ -250,7 +312,7 @@ export default function HomePage({ onAddToCart }) {
             textAlign: "center",
           }}
         >
-          <div className="row justify-content-center align-items-center">
+          <div className="row step-royal-row justify-content-center align-items-center">
             <div className="col-auto d-flex justify-content-end">
               <img
                 src="/right-design.png"
@@ -350,7 +412,9 @@ export default function HomePage({ onAddToCart }) {
                     width: "fit-content",
                   }}
                 >
-                  VIEW PRODUCTS
+                  <Link href="/featured-products" legacyBehavior>
+                    <a style={{ color: 'white', textDecoration: 'none', display: 'block' }}>VIEW PRODUCTS</a>
+                  </Link>
                 </button>
               </div>
 
@@ -443,6 +507,137 @@ export default function HomePage({ onAddToCart }) {
         </div>
       </section>
 
+      <style jsx>{`
+        @media (max-width: 600px) {
+          section.position-relative {
+            margin-top: 40px !important;
+            min-height: unset !important;
+            padding-top: 40px !important;
+            padding-bottom: 30px !important;
+          }
+          .position-absolute.w-100 {
+            position: static !important;
+            top: unset !important;
+            left: unset !important;
+            text-align: center !important;
+          }
+          .row.justify-content-center.align-items-center {
+            flex-direction: column !important;
+            gap: 10px !important;
+          }
+          .row.mx-auto.shadow-lg.p-4 {
+            flex-direction: column !important;
+            max-width: 100% !important;
+            padding: 12px !important;
+            border-radius: 12px !important;
+          }
+          .col-md-7.d-flex.flex-column.align-items-start.fade-in-left {
+            align-items: center !important;
+            margin-top: 0 !important;
+            width: 100% !important;
+            text-align: center !important;
+          }
+          .col-md-7.px-0.d-flex.flex-column.align-items-start.text-start {
+            align-items: center !important;
+            text-align: center !important;
+            width: 100% !important;
+            padding: 0 !important;
+          }
+          .col-md-5.text-center.mt-4.mt-md-0 {
+            margin-top: 18px !important;
+            width: 100% !important;
+          }
+          .col-md-5.text-center.mt-4.mt-md-0 img {
+            max-width: 90vw !important;
+            max-height: 220px !important;
+            border-top-left-radius: 40px !important;
+            border-top-right-radius: 40px !important;
+          }
+          .row.justify-content-center.align-items-center h2 {
+            font-size: 1rem !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            letter-spacing: 0.5px !important;
+            font-weight: 700 !important;
+          }
+          .row.justify-content-center.align-items-center .col-auto {
+            flex: 0 0 auto !important;
+            max-width: none !important;
+          }
+          .row.justify-content-center.align-items-center img {
+            max-width: 24px !important;
+          }
+          h5 {
+            font-size: 1rem !important;
+            margin-bottom: 8px !important;
+          }
+          p, .fst-italic {
+            font-size: 0.95rem !important;
+            line-height: 1.4 !important;
+            margin-bottom: 8px !important;
+          }
+          button.btn.mt-3.px-4.py-2 {
+            font-size: 0.95rem !important;
+            padding: 6px 18px !important;
+            border-radius: 16px !important;
+            margin-top: 10px !important;
+          }
+          .left-text-strip.px-4.py-4 {
+            font-size: 0.95rem !important;
+            padding: 10px 6px !important;
+            max-width: 98% !important;
+            margin-top: 8px !important;
+            border-radius: 10px 10px 0 0 !important;
+          }
+        }
+      `}</style>
+      <style jsx>{`
+        @media (max-width: 600px) {
+          .step-royal-row {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 4px !important;
+            flex-wrap: nowrap !important;
+            white-space: nowrap !important;
+            width: 100vw !important;
+            max-width: 100vw !important;
+            overflow: hidden !important;
+            padding: 0 4vw !important;
+            margin: 0 auto !important;
+            min-height: 38px !important;
+          }
+          .step-royal-row h2 {
+            font-size: 0.92rem !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            letter-spacing: 0.2px !important;
+            font-weight: 700 !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            max-width: 60vw !important;
+          }
+          .step-royal-row .col-auto {
+            flex: 0 0 auto !important;
+            max-width: none !important;
+            display: flex !important;
+            align-items: center !important;
+          }
+          .step-royal-row img {
+            max-width: 18px !important;
+            height: 18px !important;
+            min-width: 16px !important;
+            min-height: 16px !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+          }
+        }
+      `}</style>
+
       {/* Replace the featured products section with the carousel */}
       <section className="featured-products-section py-5" style={{ backgroundColor: "#fff" }}>
         <div className="container">
@@ -489,32 +684,49 @@ export default function HomePage({ onAddToCart }) {
             <span className="badge rounded-pill px-4 py-2 mb-2 fw-semibold" style={section.badgeStyle}>{section.badge}</span>
           </div>
           <div className="container mt-4">
-            <div className="d-flex justify-content-center align-items-center gap-3">
+            <div className="d-flex justify-content-center align-items-center gap-3 featured-carousel-row">
               <button className="btn btn-outline-dark rounded-circle" style={{ width: 48, height: 48, alignSelf: 'center' }} onClick={handlePrev} aria-label="Previous">&#x276E;</button>
-              {CARDS.map((card, index) => (
-                <div key={index} className="col-md-6 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
-                  <div className="card" style={{ width: "100%", maxWidth: "90%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
-                    <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
-                      मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
-                      यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
+              {/* Show only one card at a time on mobile, all on desktop */}
+              {typeof window !== 'undefined' && window.innerWidth <= 600
+                ? (
+                  <div className="col-md-6 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
+                    <div className="card" style={{ width: "92vw", maxWidth: "92vw", height: "210px", minHeight: "160px", borderRadius: "12px", backgroundImage: `url(${CARDS[sectionIdx].image})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", position: "relative", overflow: "hidden", boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}>
+                      <div style={{ position: "absolute", bottom: 0, width: "100%", color: "#fff", padding: "0.7rem 1rem 0.7rem 1rem", fontFamily: "Georgia, serif", background: "rgba(76,10,46,0.82)", borderBottomLeftRadius: "12px", borderBottomRightRadius: "12px" }}>
+                        <h5 style={{ fontWeight: "bold", marginBottom: "4px", fontSize: "1rem", textAlign: "left" }}>{CARDS[sectionIdx].title}</h5>
+                        <p style={{ fontSize: "0.92rem", marginBottom: "6px", textAlign: "left" }}>{CARDS[sectionIdx].desc}</p>
+                        <div className="d-flex justify-content-between align-items-center w-100" style={{ fontSize: "0.98rem" }}>
+                          <span style={{ fontWeight: 600 }}>{CARDS[sectionIdx].price}</span>
+                          <span style={{ fontSize: "0.8rem", textDecoration: "line-through", color: "#ffd700", marginLeft: 8 }}> {CARDS[sectionIdx].oldPrice}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
-                      Ingredients & Benefits
+                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center mt-2" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "20px", width: "100%", maxWidth: "92vw", fontWeight: 500, fontSize: "1rem", padding: "8px 0" }}>VIEW PRODUCT</Link>
+                  </div>
+                )
+                : CARDS.map((card, index) => (
+                  <div key={index} className="col-md-6 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
+                    <div className="card" style={{ width: "100%", maxWidth: "90%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
+                      <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
+                        मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
+                        यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
+                      </div>
+                      <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
+                        Ingredients & Benefits
+                      </div>
+                      <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
+                        <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{card.title}</h5>
+                        <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{card.desc}</p>
+                      </div>
                     </div>
-                    <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
-                      <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{card.title}</h5>
-                      <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{card.desc}</p>
+                    <div className="d-flex justify-content-between w-100 px-4 mt-2">
+                      <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
+                      <div className="text-end">
+                        <strong>{card.price}</strong>
+                        <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-between w-100 px-4 mt-2">
-                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
-                    <div className="text-end">
-                      <strong>{card.price}</strong>
-                      <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
               <button className="btn btn-outline-dark rounded-circle" style={{ width: 48, height: 48, alignSelf: 'center' }} onClick={handleNext} aria-label="Next">&#x276F;</button>
             </div>
           </div>

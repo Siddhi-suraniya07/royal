@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import {
@@ -152,6 +154,97 @@ const Footer = () => {
           </Row>
         </Container>
       </div>
+      <style jsx>{`
+        @media (max-width: 600px) {
+          .py-3, .py-3 > .container, .py-3 > .container > .row {
+            padding: 10px 0 !important;
+          }
+          .py-3 .col-6, .py-3 .col-md-3 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            margin-bottom: 8px !important;
+            justify-content: flex-start !important;
+          }
+          .py-3 img {
+            height: 22px !important;
+            margin-right: 6px !important;
+          }
+          .py-3 span {
+            font-size: 0.85rem !important;
+          }
+          .py-3 .row {
+            flex-wrap: wrap !important;
+          }
+          .py-3 .col-6:last-child, .py-3 .col-md-3:last-child {
+            margin-bottom: 0 !important;
+          }
+          /* Main footer */
+          div[style*='#4C0A2E'] {
+            padding: 18px 0 !important;
+          }
+          div[style*='#4C0A2E'] .row {
+            flex-direction: column !important;
+            text-align: left !important;
+            gap: 10px !important;
+          }
+          div[style*='#4C0A2E'] .col-md-3 {
+            margin-bottom: 12px !important;
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          div[style*='#4C0A2E'] img {
+            width: 80px !important;
+            top: 0 !important;
+            margin-bottom: 8px !important;
+          }
+          div[style*='#4C0A2E'] h5 {
+            font-size: 1.05rem !important;
+            margin-bottom: 6px !important;
+          }
+          div[style*='#4C0A2E'] ul, div[style*='#4C0A2E'] p {
+            font-size: 0.92rem !important;
+            margin-bottom: 6px !important;
+          }
+          div[style*='#4C0A2E'] .btn, div[style*='#4C0A2E'] input {
+            font-size: 0.92rem !important;
+            padding: 6px 8px !important;
+          }
+          /* Contact & Social */
+          div[style*='#631E44'] .row {
+            flex-direction: column !important;
+            gap: 8px !important;
+            text-align: left !important;
+          }
+          div[style*='#631E44'] .col-md-6 {
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
+            font-size: 0.88rem !important;
+            margin-bottom: 4px !important;
+          }
+          div[style*='#631E44'] a {
+            font-size: 1.1rem !important;
+            margin: 0 4px !important;
+          }
+          /* Bottom bar */
+          div[style*='#14010A'] .row {
+            flex-direction: column !important;
+            gap: 6px !important;
+            text-align: left !important;
+          }
+          div[style*='#14010A'] .col-md-6 {
+            justify-content: flex-start !important;
+            align-items: flex-start !important;
+            font-size: 0.82rem !important;
+            margin-bottom: 2px !important;
+          }
+          div[style*='#14010A'] a {
+            font-size: 0.88rem !important;
+            margin: 0 2px !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
