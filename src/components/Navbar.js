@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import '../styles/Navbar.css'; // keep your custom styles if needed
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar({ children }) {
   const pathname = usePathname();
+  const router = useRouter();
   const isActive = (path) => pathname === path;
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -41,6 +43,14 @@ export default function Navbar({ children }) {
     ));
   };
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Add this helper for mobile navigation
+  const handleMobileNav = (href) => {
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      router.replace(href);
+    }, 100);
+  };
 
   return (
     <>
@@ -170,18 +180,42 @@ export default function Navbar({ children }) {
       {/* Mobile right-side drawer (mobile only) */}
       <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""} d-lg-none`}>
         <div className="drawer-content">
-          <button className="drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+          <button type="button" className="drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
             <i className="bi bi-x" style={{ fontSize: "2rem" }}></i>
           </button>
           <Link href="/" className="drawer-logo" onClick={() => setMobileMenuOpen(false)}>
             <Image src="/royal-logo.png" alt="Royal Logo" width={44} height={44} style={{ objectFit: "contain", marginBottom: 24 }} />
           </Link>
-          <Link href="/" className={`drawer-link ${isActive("/") ? "active-link" : ""}`} onClick={() => setMobileMenuOpen(false)}>ROYAL HOME</Link>
-          <Link href="/royal-promises" className={`drawer-link ${isActive("/royal-promises") ? "active-link" : ""}`} onClick={() => setMobileMenuOpen(false)}>THE ROYAL PROMISE</Link>
-          <Link href="/our-essence" className={`drawer-link ${isActive("/our-essence") ? "active-link" : ""}`} onClick={() => setMobileMenuOpen(false)}>OUR ESSENCE</Link>
-          <Link href="/featured-products" className={`drawer-link ${isActive("/featured-products") ? "active-link" : ""}`} onClick={() => setMobileMenuOpen(false)}>FEATURED PRODUCTS</Link>
-          <Link href="#" className="drawer-link" onClick={() => setMobileMenuOpen(false)}><i className="bi bi-person"></i> Account</Link>
-          <button className="drawer-link drawer-cart" onClick={() => { setMobileMenuOpen(false); handleCartClick({preventDefault:()=>{}}); }}><i className="bi bi-cart"></i> Cart</button>
+          <Link 
+            href="/" 
+            className={`drawer-link ${isActive("/") ? "active-link" : ""}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            ROYAL HOME
+          </Link>
+          <button 
+            className={`drawer-link ${isActive("/royal-promises") ? "active-link" : ""}`}
+            onClick={() => handleMobileNav("/royal-promises")}
+            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+          >
+            THE ROYAL PROMISE
+          </button>
+          <button 
+            className={`drawer-link ${isActive("/our-essence") ? "active-link" : ""}`}
+            onClick={() => handleMobileNav("/our-essence")}
+            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+          >
+            OUR ESSENCE
+          </button>
+          <button 
+            className={`drawer-link ${isActive("/featured-products") ? "active-link" : ""}`}
+            onClick={() => handleMobileNav("/featured-products")}
+            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+          >
+            FEATURED PRODUCTS
+          </button>
+          <button type="button" className="drawer-link" onClick={() => { setMobileMenuOpen(false); }}><i className="bi bi-person"></i> Account</button>
+          <button type="button" className="drawer-link drawer-cart" onClick={() => { setMobileMenuOpen(false); handleCartClick({preventDefault:()=>{}}); }}><i className="bi bi-cart"></i> Cart</button>
         </div>
         <div className="drawer-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
       </div>

@@ -70,14 +70,15 @@ export default function HomePage({ onAddToCart }) {
         }}
       >
         <div
-          className="custom-overlay-text position-absolute top-50 end-0 translate-middle-y text-end"
+          className="custom-overlay-text position-absolute top-0 end-0 text-end"
           style={{
-            maxWidth: "60rem",
-            paddingRight: "4rem",
+            maxWidth: "30rem",
+            paddingRight: "3rem",
+            paddingTop: "22rem",
             color: "#ffd700",
             fontFamily: "Georgia, serif",
-            fontSize: "1.8rem",
-            lineHeight: "2.5rem",
+            fontSize: "1.2rem",
+            lineHeight: "1.8rem",
           }}
         >
           <p>
@@ -214,18 +215,25 @@ export default function HomePage({ onAddToCart }) {
 
         @media (max-width: 768px) {
           .custom-overlay-text {
-            max-width: 90%;
+            max-width: 30%;
             right: 1rem;
-            left: 5rem;
-            font-size: 0.2rem;
-            line-height: 0.2rem;
+            left: 4rem;
+            font-size: 0.4rem;
+            line-height: 0.8rem;
+            padding-top: 8rem;
+            padding-right: 2rem;
           }
         }
 
         @media (max-width: 480px) {
           .custom-overlay-text {
+            max-width: 30%;
+            right: 0.5rem;
+            left: 1rem;
             font-size: 0.2rem;
-            line-height: 0.5rem;
+            line-height: 0.7rem;
+            padding-top: 6rem;
+            padding-right: 0.5rem;
           }
         }
       `}</style>
@@ -548,48 +556,45 @@ export default function HomePage({ onAddToCart }) {
             width: 100% !important;
           }
           .col-md-5.text-center.mt-4.mt-md-0 img {
-            max-width: 90vw !important;
-            max-height: 220px !important;
-            border-top-left-radius: 40px !important;
-            border-top-right-radius: 40px !important;
+            max-height: 280px !important;
+            border-top-left-radius: 50px !important;
+            border-top-right-radius: 50px !important;
           }
-          .row.justify-content-center.align-items-center h2 {
-            font-size: 1rem !important;
-            margin: 0 !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            letter-spacing: 0.5px !important;
-            font-weight: 700 !important;
+          /* Move Royal Indulge strips upward on mobile */
+          .left-text-strip {
+            margin-top: -30px !important;
           }
-          .row.justify-content-center.align-items-center .col-auto {
-            flex: 0 0 auto !important;
-            max-width: none !important;
+          .left-text-strip:nth-child(2) {
+            margin-top: -20px !important;
           }
-          .row.justify-content-center.align-items-center img {
-            max-width: 24px !important;
+          .left-text-strip:nth-child(3) {
+            margin-top: -20px !important;
           }
-          h5 {
-            font-size: 1rem !important;
-            margin-bottom: 8px !important;
+          /* Mobile: Make Royal Indulge strips wider to match card */
+          .left-text-strip {
+            max-width: 100% !important;
           }
-          p, .fst-italic {
-            font-size: 0.95rem !important;
-            line-height: 1.4 !important;
-            margin-bottom: 8px !important;
+          /* Mobile: Fix Royal Promises section images */
+          .royal-promise-section {
+            height: auto !important;
+            min-height: 400px !important;
+            max-width: 95% !important;
+            margin: 30px auto !important;
           }
-          button.btn.mt-3.px-4.py-2 {
-            font-size: 0.95rem !important;
-            padding: 6px 18px !important;
-            border-radius: 16px !important;
-            margin-top: 10px !important;
+          .royal-promise-section .row {
+            flex-direction: column !important;
+            height: auto !important;
           }
-          .left-text-strip.px-4.py-4 {
-            font-size: 0.95rem !important;
-            padding: 10px 6px !important;
-            max-width: 98% !important;
-            margin-top: 8px !important;
-            border-radius: 10px 10px 0 0 !important;
+          .royal-promise-section .col-md-6 {
+            width: 100% !important;
+            height: auto !important;
+            margin-bottom: 20px !important;
+          }
+          .royal-promise-section img {
+            max-width: 100% !important;
+            height: auto !important;
+            max-height: 300px !important;
+            object-fit: contain !important;
           }
         }
       `}</style>
@@ -686,26 +691,38 @@ export default function HomePage({ onAddToCart }) {
           <div className="container mt-4">
             <div className="d-flex justify-content-center align-items-center gap-3 featured-carousel-row">
               <button className="btn btn-outline-dark rounded-circle" style={{ width: 48, height: 48, alignSelf: 'center' }} onClick={handlePrev} aria-label="Previous">&#x276E;</button>
-              {/* Show only one card at a time on mobile, all on desktop */}
-              {typeof window !== 'undefined' && window.innerWidth <= 600
-                ? (
-                  <div className="col-md-6 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
-                    <div className="card" style={{ width: "92vw", maxWidth: "92vw", height: "210px", minHeight: "160px", borderRadius: "12px", backgroundImage: `url(${CARDS[sectionIdx].image})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", position: "relative", overflow: "hidden", boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}>
-                      <div style={{ position: "absolute", bottom: 0, width: "100%", color: "#fff", padding: "0.7rem 1rem 0.7rem 1rem", fontFamily: "Georgia, serif", background: "rgba(76,10,46,0.82)", borderBottomLeftRadius: "12px", borderBottomRightRadius: "12px" }}>
-                        <h5 style={{ fontWeight: "bold", marginBottom: "4px", fontSize: "1rem", textAlign: "left" }}>{CARDS[sectionIdx].title}</h5>
-                        <p style={{ fontSize: "0.92rem", marginBottom: "6px", textAlign: "left" }}>{CARDS[sectionIdx].desc}</p>
-                        <div className="d-flex justify-content-between align-items-center w-100" style={{ fontSize: "0.98rem" }}>
-                          <span style={{ fontWeight: 600 }}>{CARDS[sectionIdx].price}</span>
-                          <span style={{ fontSize: "0.8rem", textDecoration: "line-through", color: "#ffd700", marginLeft: 8 }}> {CARDS[sectionIdx].oldPrice}</span>
-                        </div>
-                      </div>
+              
+              {/* Mobile: Show only one card */}
+              <div className="d-block d-md-none">
+                <div className="col-12 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
+                  <div className="card" style={{ width: "85vw", maxWidth: "85vw", height: "350px", borderRadius: "15px", backgroundImage: `url(${CARDS[sectionIdx % CARDS.length].image})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
+                    <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
+                      मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
+                      यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
                     </div>
-                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center mt-2" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "20px", width: "100%", maxWidth: "92vw", fontWeight: 500, fontSize: "1rem", padding: "8px 0" }}>VIEW PRODUCT</Link>
+                    <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
+                      Ingredients & Benefits
+                    </div>
+                    <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
+                      <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{CARDS[sectionIdx % CARDS.length].title}</h5>
+                      <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{CARDS[sectionIdx % CARDS.length].desc}</p>
+                    </div>
                   </div>
-                )
-                : CARDS.map((card, index) => (
-                  <div key={index} className="col-md-6 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
-                    <div className="card" style={{ width: "100%", maxWidth: "90%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
+                  <div className="d-flex justify-content-between w-100 px-4 mt-2">
+                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
+                    <div className="text-end">
+                      <strong>{CARDS[sectionIdx % CARDS.length].price}</strong>
+                      <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {CARDS[sectionIdx % CARDS.length].oldPrice}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop: Show all cards */}
+              <div className="d-none d-md-flex" style={{ gap: "70px" }}>
+                {CARDS.map((card, index) => (
+                  <div key={index} className="d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
+                    <div className="card" style={{ width: "550px", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
                       <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
                         मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
                         यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
@@ -727,6 +744,8 @@ export default function HomePage({ onAddToCart }) {
                     </div>
                   </div>
                 ))}
+              </div>
+              
               <button className="btn btn-outline-dark rounded-circle" style={{ width: 48, height: 48, alignSelf: 'center' }} onClick={handleNext} aria-label="Next">&#x276F;</button>
             </div>
           </div>

@@ -60,25 +60,14 @@ export default function FeaturedProducts() {
         </div>
       </section>
       <section
+        className="d-flex justify-content-center align-items-center py-5"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "40px 0",
           position: "relative",
           marginTop: "-80px",
         }}
       >
-        {/* Background Container */}
-        <div
-          style={{
-            width: "1200px",
-            height: "950px", // ✅ FIXED HEIGHT is needed
-            position: "relative",
-            borderRadius: "30px",
-            overflow: "hidden",
-          }}
-        >
+        {/* Background Container - Now Responsive */}
+        <div className={`w-100 ${styles.responsiveContainer}`}>
           {/* Background Image (absolute, full cover) */}
           <Image
             src="/background3.png"
@@ -92,26 +81,18 @@ export default function FeaturedProducts() {
           />
 
           {/* Foreground content on top of image */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              height: "100%",
-              padding: "60px",
-            }}
-          >
+          <div className={styles.responsiveContent}>
             {/* Grid of Cards */}
             <div className="container">
               <div className="row gy-4">
                 {[1, 2, 3, 4].map((item, index) => (
                   <div
                     key={index}
-                    className="col-md-6 d-flex flex-column align-items-center"
+                    className="col-12 col-md-6 d-flex flex-column align-items-center"
                   >
                     <div
-                      className="card"
+                      className="card w-100"
                       style={{
-                        width: "100%",
                         height: "350px",
                         backgroundImage: `url(${
                           index % 2 === 0 ? "/card11.png" : "/card12.png"
@@ -242,25 +223,14 @@ export default function FeaturedProducts() {
         </div>
       </section>
       <section
+        className="d-flex justify-content-center align-items-center py-5"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "40px 0",
           position: "relative",
           marginTop: "-80px",
         }}
       >
-        {/* Background Container */}
-        <div
-          style={{
-            width: "1200px",
-            height: "950px", // ✅ FIXED HEIGHT is needed
-            position: "relative",
-            borderRadius: "30px",
-            overflow: "hidden",
-          }}
-        >
+        {/* Background Container - Now Responsive */}
+        <div className={`w-100 ${styles.responsiveContainer}`}>
           {/* Background Image (absolute, full cover) */}
           <Image
             src="/background3.png"
@@ -274,26 +244,18 @@ export default function FeaturedProducts() {
           />
 
           {/* Foreground content on top of image */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              height: "100%",
-              padding: "60px",
-            }}
-          >
+          <div className={styles.responsiveContent}>
             {/* Grid of Cards */}
             <div className="container">
               <div className="row gy-4">
                 {[1, 2, 3, 4].map((item, index) => (
                   <div
                     key={index}
-                    className="col-md-6 d-flex flex-column align-items-center"
+                    className="col-12 col-md-6 d-flex flex-column align-items-center"
                   >
                     <div
-                      className="card"
+                      className="card w-100"
                       style={{
-                        width: "100%",
                         height: "350px",
                         backgroundImage: `url(${
                           index % 2 === 0 ? "/card11.png" : "/card12.png"
@@ -424,25 +386,14 @@ export default function FeaturedProducts() {
         </div>
       </section>
       <section
+        className="d-flex justify-content-center align-items-center py-5"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "40px 0",
           position: "relative",
           marginTop: "-80px",
         }}
       >
-        {/* Background Container */}
-        <div
-          style={{
-            width: "1200px",
-            height: "950px", // ✅ FIXED HEIGHT is needed
-            position: "relative",
-            borderRadius: "30px",
-            overflow: "hidden",
-          }}
-        >
+        {/* Background Container - Now Responsive */}
+        <div className={`w-100 ${styles.responsiveContainer}`}>
           {/* Background Image (absolute, full cover) */}
           <Image
             src="/background3.png"
@@ -456,208 +407,18 @@ export default function FeaturedProducts() {
           />
 
           {/* Foreground content on top of image */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              height: "100%",
-              padding: "60px",
-            }}
-          >
+          <div className={styles.responsiveContent}>
             {/* Grid of Cards */}
             <div className="container">
               <div className="row gy-4">
                 {[1, 2, 3, 4].map((item, index) => (
                   <div
                     key={index}
-                    className="col-md-6 d-flex flex-column align-items-center"
+                    className="col-12 col-md-6 d-flex flex-column align-items-center"
                   >
                     <div
-                      className="card"
+                      className="card w-100"
                       style={{
-                        width: "100%",
-                        height: "350px",
-                        backgroundImage: `url(${
-                          index % 2 === 0 ? "/card11.png" : "/card12.png"
-                        })`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        borderRadius: "15px",
-                        position: "relative",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {/* Shloka */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "10px",
-                          left: "10px",
-                          color: "#fff",
-                          fontSize: "0.75rem",
-                          fontFamily: "Georgia, serif",
-                          maxWidth: "65%",
-                          lineHeight: "1.4",
-                        }}
-                      >
-                        मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
-                        यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
-                      </div>
-
-                      {/* Top-right label */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "10px",
-                          right: "10px",
-                          backgroundColor: "rgba(0, 0, 0, 0.4)",
-                          color: "#fff",
-                          padding: "4px 10px",
-                          fontSize: "0.7rem",
-                          borderRadius: "20px",
-                          fontWeight: 500,
-                          fontFamily: "Arial, sans-serif",
-                        }}
-                      >
-                        Ingredients & Benefits
-                      </div>
-
-                      {/* Bottom Content */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          bottom: "0",
-                          width: "100%",
-                          color: "#fff",
-                          padding: "1rem",
-                          fontFamily: "Georgia, serif",
-                        }}
-                      >
-                        <h5 style={{ fontWeight: "bold" }}>
-                          {index % 2 === 0
-                            ? "COSMIC BODY OIL"
-                            : "LAVISH BODY SCRUB"}
-                        </h5>
-                        <p style={{ fontSize: "16px" }}>
-                          {index % 2 === 0
-                            ? "Unlock celestial beauty in a bottle. A careful blend of essential oils and natural ingredients that melt into your skin, leaving you nourished and calm."
-                            : "A royal touch to desi household ingredients crafted for indulgence. Suitable for all skin types, and achieves smooth skin."}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Button & Price */}
-                    <div className="d-flex justify-content-between w-100 px-2 px-md-4 mt-2">
-                      <button
-                        className="btn btn-sm"
-                        style={{
-                          backgroundColor: "#8B5E3C",
-                          color: "white",
-                          borderRadius: "30px",
-                          padding: "8px 20px",
-                        }}
-                      >
-                        VIEW PRODUCT
-                      </button>
-                      <div className="text-end">
-                        <strong>₹1800</strong>
-                        <div
-                          style={{
-                            fontSize: "0.75rem",
-                            textDecoration: "line-through",
-                            color: "gray",
-                          }}
-                        >
-                          Get 50% OFF ₹2400
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-5 bg-light">
-        <div className="container text-center">
-          {/* Heading + Ornaments */}
-          <div className="d-flex justify-content-center align-items-center gap-3 mb-3 flex-wrap">
-            <img src="/FD1.png" alt="left" className={styles.ornament} />
-            <div>
-              <span
-                className="badge rounded-pill px-4 py-2 mb-2 fw-semibold"
-                style={{
-                  backgroundColor: "#BA7E38", // 💡 Replace with your desired color
-                  color: "white", // 👈 Set text color to contrast
-                }}
-              >
-                HAIR THERAPY
-              </span>
-
-              <h2 className="fw-bold fs-5 m-0 text-dark">
-                दिव्य चांदनं त्वं मम त्वचायै च शुभम् <br />
-                सौन्दर्यसाधनं मम मनःसुखदायकम्
-              </h2>
-            </div>
-            <img src="/FD2.png" alt="right" className={styles.ornament} />
-          </div>
-        </div>
-      </section>
-      <section
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "40px 0",
-          position: "relative",
-          marginTop: "-80px",
-        }}
-      >
-        {/* Background Container */}
-        <div
-          style={{
-            width: "1200px",
-            height: "950px", // ✅ FIXED HEIGHT is needed
-            position: "relative",
-            borderRadius: "30px",
-            overflow: "hidden",
-          }}
-        >
-          {/* Background Image (absolute, full cover) */}
-          <Image
-            src="/background3.png"
-            alt="Featured Background"
-            fill
-            style={{
-              objectFit: "cover",
-              zIndex: 1,
-              borderRadius: "30px",
-            }}
-          />
-
-          {/* Foreground content on top of image */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 2,
-              height: "100%",
-              padding: "60px",
-            }}
-          >
-            {/* Grid of Cards */}
-            <div className="container">
-              <div className="row gy-4">
-                {[1, 2, 3, 4].map((item, index) => (
-                  <div
-                    key={index}
-                    className="col-md-6 d-flex flex-column align-items-center"
-                  >
-                    <div
-                      className="card"
-                      style={{
-                        width: "100%",
                         height: "350px",
                         backgroundImage: `url(${
                           index % 2 === 0 ? "/card11.png" : "/card12.png"
@@ -818,7 +579,7 @@ export default function FeaturedProducts() {
           <div className="container p-0" style={{ maxWidth: "1000px" }}>
             <div className="row justify-content-center gy-4">
               {[1, 2, 3].map((_, idx) => (
-                <div key={idx} className="col-md-4">
+                <div key={idx} className="col-12 col-md-4">
                   <div
                     className="card shadow-sm"
                     style={{

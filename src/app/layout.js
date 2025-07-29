@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../styles/globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
+import BootstrapProvider from '../components/BootstrapProvider';
 
 export const metadata = {
   title: 'Royal Website',
@@ -14,10 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
-
+        <BootstrapProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </BootstrapProvider>
       </body>
     </html>
   );
