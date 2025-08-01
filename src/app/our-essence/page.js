@@ -1,7 +1,5 @@
 "use client";
-
 import Image from "next/image";
-
 export default function OurEssence() {
   return (
     <>
@@ -69,7 +67,7 @@ export default function OurEssence() {
         {/* Main Heading */}
         <h2
           style={{
-            fontFamily: "Rose Velt Personal Use, serif",
+            fontFamily: "Abel, sans-serif",
             fontSize: "32px",
             color: "#B48338",
             fontWeight: 400,
@@ -96,22 +94,39 @@ export default function OurEssence() {
 
         {/* Circular Down-Arrow Button */}
         <div className="mt-4 d-flex justify-content-center">
-          <span
+          <button
+            onClick={() => {
+              const nextSection = document.querySelector('section:not(:first-child)');
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
             style={{
               fontSize: "1.2rem",
-              border: "1px solid #000",
+              border: "2px solid #B48338",
               borderRadius: "50%",
-              width: "40px",
-              height: "40px",
+              width: "50px",
+              height: "50px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              backgroundColor: "#fff",
+              backgroundColor: "rgba(180, 131, 56, 0.1)",
+              color: "#B48338",
+              transition: "all 0.3s ease",
+              outline: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "rgba(180, 131, 56, 0.2)";
+              e.target.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "rgba(180, 131, 56, 0.1)";
+              e.target.style.transform = "scale(1)";
             }}
           >
             &#8595;
-          </span>
+          </button>
         </div>
 
         {/* Placeholder for Next Section Anchor */}

@@ -1,7 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 export default function RoyalPromise() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <section
@@ -13,11 +26,9 @@ export default function RoyalPromise() {
           backgroundColor: "#fff",
         }}
       >
-
-
         <h2
           style={{
-            fontFamily: "Rose Velt Personal Use, serif",
+            fontFamily: "Abel, sans-serif",
             fontSize: "32px",
             color: "#B48338",
             fontWeight: 400,
@@ -42,39 +53,56 @@ export default function RoyalPromise() {
         </p>
 
         <div className="mt-4 d-flex justify-content-center">
-          <span
+          <button
+            onClick={() => {
+              const nextSection = document.querySelector('section:nth-child(2)');
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
             style={{
-              fontSize: "1.2rem",
-              border: "1px solid #000",
+              fontSize: "1.4rem",
+              border: "2px solid #B48338",
               borderRadius: "50%",
-              width: "40px",
-              height: "40px",
+              width: "30px",
+              height: "30px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              backgroundColor: "#fff",
+              backgroundColor: "transparent",
+              color: "#B48338",
+              transition: "all 0.3s ease",
+              outline: "none",
+              fontWeight: "bold",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "scale(1.15)";
+              e.target.style.borderColor = "#8B5A2B";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "scale(1)";
+              e.target.style.borderColor = "#B48338";
             }}
           >
             &#8595;
-          </span>
+          </button>
         </div>
       </section>
 
       <section
         className="d-flex align-items-center justify-content-center"
         style={{
-          maxWidth: "1000px",
+          maxWidth: "1400px",
           margin: "0 auto",
           padding: "0 15px",
-          minHeight: "170vh",
+          minHeight: "120vh",
           position: "relative",
           borderRadius: "30px",
           overflow: "hidden",
           top: "-50px",
         }}
       >
-      
         <div
           style={{
             position: "absolute",
@@ -94,53 +122,52 @@ export default function RoyalPromise() {
 
         <div className="container">
           <div className="row">
-           
             <div className="col-md-4 d-flex justify-content-center">
               <img
                 src="/image5.png"
                 alt="Royal Promise Art"
                 className="img-fluid"
                 style={{
-                  width: "455px",
-                  height: "492px",
+                  width: "400px",
+                  height: "550px",
                   objectFit: "cover",
                   borderRadius: "200px",
                   position: "relative",
-                  marginTop: "100px",
+                  marginTop: "50px",
                   marginLeft: "80px",
+                  transform: "none",
                 }}
               />
             </div>
 
-           
             <div className="col-md-8">
-              <div className="ps-md-5 pt-5">
+              <div 
+                className="ps-md-5 pt-5"
+                style={{
+                  transform: `translateY(${-scrollY * 0.2}px)`,
+                  transition: "transform 0.1s ease-out",
+                  position: "relative",
+                  zIndex: 2,
+                }}
+              >
                 {[
                   {
                     title:
-                      "TIME–TESTED FORMULAS DERIVED FROM ANCIENT SCIENCES AND SCRIPTURES",
-                    desc: "Rooted in Ayurveda and proven through generations of ritual wisdom.",
+                      "TIME-TESTED FORMULAS DERIVED FROM ANCIENT SCIENCES AND SCRIPTURES",
+                    desc: "Rooted in Ayurveda and proven through generations of ritual wisdom",
                   },
                   {
                     title:
-                      "HIGH–QUALITY, ORGANIC INGREDIENTS FOR OPTIMAL EFFICACY",
+                      "HIGH-QUALITY, ORGANIC INGREDIENTS FOR OPTIMAL EFFICACY",
                     desc: "Sourced from certified farms to ensure purity and potency in every drop.",
                   },
                   {
-                    title: "ECO–FRIENDLY MANUFACTURING PROCESSES",
-                    desc: "Produced in small batches using local ingredients, seasonal methods.",
+                    title: "ECO-FRIENDLY MANUFACTURING PROCESSES",
+                    desc: "Produced in small batches using low-impact, conscious methods.",
                   },
                   {
-                    title: "CRUELTY–FREE AND SUSTAINABLE PRACTICES",
-                    desc: "All products are ethically sourced—never tested on animals, always kind to the Earth.",
-                  },
-                  {
-                    title: "ECO–FRIENDLY MANUFACTURING PROCESSES",
-                    desc: "Produced in small batches using local ingredients, seasonal methods.",
-                  },
-                  {
-                    title: "CRUELTY–FREE AND SUSTAINABLE PRACTICES",
-                    desc: "All products are ethically sourced—never tested on animals, always kind to the Earth.",
+                    title: "CRUELTY-FREE AND SUSTAINABLE PRACTICES",
+                    desc: "Approved by ethical standards—never tested on animals, always kind to nature.",
                   },
                 ].map((item, idx) => (
                   <div key={idx} className="mb-4">
@@ -157,20 +184,20 @@ export default function RoyalPromise() {
                       style={{
                         color: "#B48338",
                         fontWeight: "600",
-                        fontSize: "13px",
+                        fontSize: "14px",
+                        lineHeight: "1.4",
+                        marginBottom: "8px",
                       }}
                     >
                       {item.title}
                     </h6>
 
-                  
                     <ul className="mt-2 ps-3">
-                      <li style={{ fontSize: "13px", color: "#333" }}>
+                      <li style={{ fontSize: "13px", color: "#333", lineHeight: "1.5" }}>
                         {item.desc}
                       </li>
                     </ul>
 
-                   
                     <div className="my-3">
                       <img
                         src="/line.png"

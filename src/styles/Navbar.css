@@ -8,17 +8,12 @@
 }
 .nav-link {
   color: #000;
-  transition: color 0.2s;
 }
-.nav-link:hover,
 .active-link {
   color: #b88e2f; 
 }
 .nav-icon {
   color: #000;
-}
-.nav-icon:hover {
-  color: #b88e2f;
 }
 .nudge-right {
   padding-left: 4.5rem;
@@ -28,9 +23,11 @@
 }
 .active-link {
   color: black !important;
+  font-weight: bold !important;
   text-decoration: underline;
   text-decoration-color: black;
-  text-underline-offset: 4px; 
+  text-underline-offset: 20px;
+  text-decoration-thickness: 8px;
 }
 
 @media (max-width: 768px) {

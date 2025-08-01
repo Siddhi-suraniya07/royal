@@ -21,84 +21,99 @@ const Footer = () => {
       <div style={{ backgroundColor: '#BA7E38' }} className="py-3">
         <Container>
           <Row className="text-center text-md-left justify-content-center">
-            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-              <img src="/f1.png" alt="No Tests On Animals" style={{ height: '30px', marginRight: '10px' }} />
-              <span style={{ fontSize: '0.9rem', color: '#000' }}>No Tests On Animals</span>
-            </Col>
-            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-              <img src="/f2.png" alt="No Animal Ingredients" style={{ height: '30px', marginRight: '10px' }} />
-              <span style={{ fontSize: '0.9rem', color: '#000' }}>No Animal-Derived Ingredients</span>
-            </Col>
-            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-              <img src="/f3.png" alt="No Gluten" style={{ height: '30px', marginRight: '10px' }} />
-              <span style={{ fontSize: '0.9rem', color: '#000' }}>No Gluten, Or Gluten Byproducts</span>
-            </Col>
-            <Col md={3} xs={6} className="d-flex align-items-center justify-content-center">
-              <img src="/f4.png" alt="Recyclable Packaging" style={{ height: '30px', marginRight: '10px' }} />
-              <span style={{ fontSize: '0.9rem', color: '#000' }}>Recyclable Packaging</span>
-            </Col>
+                         <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+               <img src="/f1.png" alt="No Tests On Animals" style={{ height: '30px', marginRight: '10px' }} />
+               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Tests On Animals</span>
+             </Col>
+             <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+               <img src="/f2.png" alt="No Animal Ingredients" style={{ height: '30px', marginRight: '10px' }} />
+               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Animal-Derived Ingredients</span>
+             </Col>
+             <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+               <img src="/f3.png" alt="No Gluten" style={{ height: '30px', marginRight: '10px' }} />
+               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Gluten, Or Gluten Byproducts</span>
+             </Col>
+             <Col md={3} xs={6} className="d-flex align-items-center justify-content-center">
+               <img src="/f4.png" alt="Recyclable Packaging" style={{ height: '30px', marginRight: '10px' }} />
+               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>Recyclable Packaging</span>
+             </Col>
           </Row>
         </Container>
       </div>
 
-      {/* Main Footer Section */}
-      <div style={{ backgroundColor: '#4C0A2E', color: 'white', padding: '40px 0' }}>
+            {/* Main Footer Section */}
+      <div style={{ backgroundColor: '#4C0A2E', color: 'white', padding: '40px 0', height: '300px' }}>
         <Container>
-          <Row className="text-md-left text-center">
-            {/* Logo */}
-            <Col md={3} className="mb-8 d-flex align-items-center justify-content-center justify-content-md-start">
-              <img src="/royal-logo.png" alt="Raajsi Logo" style={{ width: '120px',position: 'relative', top: '-50px' }} />
+          <Row className="text-md-left">
+                         {/* Logo */}
+            <Col md={3} className="mb-8 d-flex flex-column align-items-start justify-content-start">
+              <img src="/royal-logo.png" alt="Raajsi Logo" style={{ width: '120px', marginTop: '20px' }} />
             </Col>
 
             {/* About */}
-            <Col md={3} className="mb-4">
-              <h5 style={{ fontWeight: '600' }}>About</h5>
-              <ul className="list-unstyled" style={{ lineHeight: '1.8', fontSize: '0.95rem' }}>
-                <li>Our Essence</li>
-                <li>The Royal Promise</li>
-                <li>Rediscover Ayurveda</li>
+            <Col md={3} className="mb-4 d-flex flex-column align-items-start">
+              <h5 style={{ fontWeight: '600', marginBottom: '15px' }}>About</h5>
+              <ul className="list-unstyled" style={{ lineHeight: '1.6', fontSize: '0.95rem', margin: 0, padding: 0 }}>
+                <li style={{ marginBottom: '6px' }}>Our Essence</li>
+                <li style={{ marginBottom: '6px' }}>The Royal Promise</li>
+                <li style={{ marginBottom: '6px' }}>Rediscover Ayurveda</li>
               </ul>
             </Col>
 
             {/* Products */}
-            <Col md={3} className="mb-4">
-              <h5 style={{ fontWeight: '600' }}>Products</h5>
-              <ul className="list-unstyled" style={{ lineHeight: '1.8', fontSize: '0.95rem' }}>
-                <li>Ritual Kits</li>
-                <li>Hair Care</li>
-                <li>Body Care</li>
-                <li>Skin Care</li>
+            <Col md={3} className="mb-4 d-flex flex-column align-items-start">
+              <h5 style={{ fontWeight: '600', marginBottom: '15px' }}>Products</h5>
+              <ul className="list-unstyled" style={{ lineHeight: '1.6', fontSize: '0.95rem', margin: 0, padding: 0 }}>
+                <li style={{ marginBottom: '6px' }}>Ritual Kits</li>
+                <li style={{ marginBottom: '6px' }}>Hair Care</li>
+                <li style={{ marginBottom: '6px' }}>Body Care</li>
+                <li style={{ marginBottom: '6px' }}>Skin Care</li>
               </ul>
             </Col>
 
             {/* Subscription */}
-            <Col md={3} className="mb-4">
-              <h5 style={{ fontWeight: '600' }}>Keep In Touch With Raajsi</h5>
-              <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+            <Col md={3} className="mb-4 d-flex flex-column align-items-start">
+              <h5 style={{ fontWeight: '600', marginBottom: '15px' }}>Keep In Touch With Raajsi</h5>
+              <p style={{ fontSize: '0.8rem', marginBottom: '20px', lineHeight: '1.2', width: '100%', maxWidth: '320px' }}>
                 Join The Raajsi Newsletter And Be First To Hear About News, Offers And Skincare Advice
               </p>
 
               <Form>
-                <div className="d-flex mb-2">
-                  <Form.Control
-                    type="email"
-                    placeholder="Email Address"
-                    style={{
-                      borderRadius: 0,
-                      border: 'none',
-                      borderBottom: '1px solid #ccc',
-                      backgroundColor: 'transparent',
-                      color: 'white',
-                    }}
-                    className="me-2"
-                  />
-                  <Button
-                    variant="light"
-                    size="sm"
-                    style={{ borderRadius: 0, paddingLeft: '15px', paddingRight: '15px' }}
-                  >
-                    Subscribe
-                  </Button>
+                <div className="mb-3">
+                  {/* <label style={{ color: 'white', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>
+                    Email Address
+                  </label> */}
+                  <div className="d-flex mb-3">
+                    <Form.Control
+                      type="email"
+                      placeholder=""
+                      style={{
+                        borderRadius: 0,
+                        border: 'none',
+                        borderBottom: '1px solid #ccc',
+                        backgroundColor: 'transparent',
+                        color: 'white',
+                        flex: 1,
+                        padding: '8px 0'
+                      }}
+                      className="me-3"
+                    />
+                    <Button
+                      variant="light"
+                      size="sm"
+                      style={{ 
+                        borderRadius: 0, 
+                        paddingLeft: '20px', 
+                        paddingRight: '20px',
+                        backgroundColor: 'white',
+                        color: '#4C0A2E',
+                        border: 'none',
+                        fontWeight: '500'
+                      }}
+                    >
+                      Subscribe
+                    </Button>
+                  </div>
                 </div>
 
                 <Form.Check
@@ -147,10 +162,10 @@ const Footer = () => {
             <Col md={6} className="d-flex align-items-center justify-content-center justify-content-md-start">
               <FaRegCopyright style={{ marginRight: '5px' }} /> 2024 Raajsi. All Rights Reserved.
             </Col>
-            <Col md={6} className="d-flex justify-content-center justify-content-md-end">
-              <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem' }}>Terms & Conditions</a>
-              <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem' }}>Privacy Policy</a>
-            </Col>
+                         <Col md={6} className="d-flex justify-content-center justify-content-md-end">
+               <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Terms & Conditions</a>
+               <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Privacy Policy</a>
+             </Col>
           </Row>
         </Container>
       </div>

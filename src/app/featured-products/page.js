@@ -33,10 +33,41 @@ export default function FeaturedProducts() {
           </h2>
           <p className="fs-4 mt-3">शरीरमाद्यं खलु धर्मसाधनम्</p>
 
-          {/* Down arrow */}
-          {/* Down arrow */}
-          <div className={styles.arrowWrapper}>
-            <span className={styles.arrow}>&#x2193;</span>
+          {/* Circular Down Arrow */}
+          <div className="mt-4 d-flex justify-content-center">
+            <button
+              onClick={() => {
+                const nextSection = document.querySelector('.py-5.bg-light');
+                if (nextSection) {
+                  nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              style={{
+                fontSize: "1.2rem",
+                border: "2px solid rgba(255, 255, 255, 0.8)",
+                borderRadius: "50%",
+                width: "50px",
+                height: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                color: "rgba(255, 255, 255, 0.8)",
+                transition: "all 0.3s ease",
+                outline: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+                e.target.style.transform = "scale(1.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+                e.target.style.transform = "scale(1)";
+              }}
+            >
+              &#8595;
+            </button>
           </div>
         </div>
       </div>

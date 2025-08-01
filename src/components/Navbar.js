@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import '../styles/Navbar.css'; // keep your custom styles if needed
+import '../styles/Navbar.css';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -19,12 +19,10 @@ export default function Navbar({ children }) {
   };
   const handleCloseCart = () => setCartOpen(false);
 
-  // Add to cart handler
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
       const idx = prev.findIndex((item) => item.title === product.title);
       if (idx !== -1) {
-        // Already in cart, increment quantity
         const updated = [...prev];
         updated[idx].qty += 1;
         return updated;
@@ -44,12 +42,9 @@ export default function Navbar({ children }) {
   };
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Add this helper for mobile navigation
   const handleMobileNav = (href) => {
     setMobileMenuOpen(false);
-    setTimeout(() => {
-      router.replace(href);
-    }, 100);
+    router.push(href); // ✅ FIXED: replaced router.replace() + setTimeout
   };
 
   return (
@@ -57,21 +52,18 @@ export default function Navbar({ children }) {
       <nav className="navbar navbar-expand-lg bg-white border-bottom py-1 fixed-top">
         <div className="container-fluid px-5">
           <div className="row w-100 align-items-center position-relative">
-            {/* Left Side Nav (desktop only) */}
             <div className="col-4 d-none d-lg-flex justify-content-start gap-4 align-items-center nav-links-left">
-              <Link href="/" className={`nav-link nav-item fw-semibold fs-6 nudge-right ${isActive("/") ? "active-link" : ""}`}>ROYAL HOME</Link>
-              <Link href="/royal-promises" className={`nav-link nav-item fw-semibold fs-6 nudge-rig ${isActive("/royal-promises") ? "active-link" : ""}`}>THE ROYAL PROMISE</Link>
+              <Link href="/" className={`nav-link nav-item fs-6 nudge-right ${isActive("/") ? "active-link" : ""}`}>ROYAL HOME</Link>
+              <Link href="/royal-promises" className={`nav-link nav-item fs-6 nudge-rig ${isActive("/royal-promises") ? "active-link" : ""}`}>THE ROYAL PROMISE</Link>
             </div>
-            {/* Center Logo (always visible) */}
             <div className="col-4 d-flex justify-content-center">
               <Link href="/" className="navbar-brand mx-auto">
                 <Image src="/royal-logo.png" alt="Royal Logo" width={50} height={50} style={{ objectFit: "contain" }} />
               </Link>
             </div>
-            {/* Right Side Nav (desktop only) */}
             <div className="col-4 d-none d-lg-flex justify-content-end gap-5 position-relative nav-links-right">
               <Link href="/our-essence" className={`nav-link ${isActive("/our-essence") ? "active-link" : ""}`}>OUR ESSENCE</Link>
-              <Link href="/featured-products" className={`nav-link nav-item fw-semibold fs-8  ${isActive("/featured-products") ? "active-link" : ""}`}>FEATURED PRODUCTS</Link>
+              <Link href="/featured-products" className={`nav-link nav-item fs-8  ${isActive("/featured-products") ? "active-link" : ""}`}>FEATURED PRODUCTS</Link>
               <Link href="#" className="nav-link nav-icon"><i className="bi bi-person fs-5"></i></Link>
               <button className="nav-link nav-icon bg-transparent border-0 p-0" style={{ outline: "none", boxShadow: "none" }} onClick={handleCartClick} aria-label="Open cart">
                 <i className="bi bi-cart fs-5"></i>
@@ -161,7 +153,6 @@ export default function Navbar({ children }) {
                 </div>
               )}
             </div>
-            {/* Hamburger for mobile (right side, mobile only) */}
             <div className="col-4 d-flex justify-content-end align-items-center d-lg-none" style={{ position: "absolute", right: 0, top: 0, height: "100%" }}>
               <button
                 className="navbar-toggler"
@@ -177,7 +168,8 @@ export default function Navbar({ children }) {
           </div>
         </div>
       </nav>
-      {/* Mobile right-side drawer (mobile only) */}
+
+      {/* Mobile right-side drawer */}
       <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""} d-lg-none`}>
         <div className="drawer-content">
           <button type="button" className="drawer-close" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
@@ -193,33 +185,34 @@ export default function Navbar({ children }) {
           >
             ROYAL HOME
           </Link>
-          <button 
+          <Link 
+            href="/royal-promises" 
             className={`drawer-link ${isActive("/royal-promises") ? "active-link" : ""}`}
-            onClick={() => handleMobileNav("/royal-promises")}
-            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+            onClick={() => setMobileMenuOpen(false)}
           >
             THE ROYAL PROMISE
-          </button>
-          <button 
+          </Link>
+          <Link 
+            href="/our-essence" 
             className={`drawer-link ${isActive("/our-essence") ? "active-link" : ""}`}
-            onClick={() => handleMobileNav("/our-essence")}
-            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+            onClick={() => setMobileMenuOpen(false)}
           >
             OUR ESSENCE
-          </button>
-          <button 
+          </Link>
+          <Link 
+            href="/featured-products" 
             className={`drawer-link ${isActive("/featured-products") ? "active-link" : ""}`}
-            onClick={() => handleMobileNav("/featured-products")}
-            style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}
+            onClick={() => setMobileMenuOpen(false)}
           >
             FEATURED PRODUCTS
-          </button>
+          </Link>
           <button type="button" className="drawer-link" onClick={() => { setMobileMenuOpen(false); }}><i className="bi bi-person"></i> Account</button>
           <button type="button" className="drawer-link drawer-cart" onClick={() => { setMobileMenuOpen(false); handleCartClick({preventDefault:()=>{}}); }}><i className="bi bi-cart"></i> Cart</button>
         </div>
         <div className="drawer-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
       </div>
-      {/* Pass onAddToCart to children if present */}
+
+
       {children && React.cloneElement(children, { onAddToCart: handleAddToCart })}
     </>
   );
