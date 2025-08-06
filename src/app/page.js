@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 export default function HomePage({ onAddToCart }) {
@@ -65,6 +65,7 @@ export default function HomePage({ onAddToCart }) {
     },
   ];
   const CARDS = [
+    // Body Therapy - 2 cards
     {
       image: "/card11.png",
       title: "COSMIC BODY OIL",
@@ -72,6 +73,7 @@ export default function HomePage({ onAddToCart }) {
         "Unlock celestial beauty in a bottle. A careful blend of essential oils and natural ingredients that melt into your skin, leaving you nourished and calm.",
       price: "₹1800",
       oldPrice: "₹2400",
+      section: "BODY THERAPY"
     },
     {
       image: "/card12.png",
@@ -80,7 +82,9 @@ export default function HomePage({ onAddToCart }) {
         "A royal touch to desi household ingredients crafted for indulgence. Suitable for all skin types, and achieves smooth skin.",
       price: "₹1600",
       oldPrice: "₹2000",
+      section: "BODY THERAPY"
     },
+    // Skin Therapy - 2 cards
     {
       image: "/card21.png",
       title: "ROYAL FACE SERUM",
@@ -88,22 +92,54 @@ export default function HomePage({ onAddToCart }) {
         "A luxurious blend of natural ingredients designed to rejuvenate and brighten your skin, revealing your natural radiance.",
       price: "₹2200",
       oldPrice: "₹2800",
+      section: "SKIN THERAPY"
     },
     {
       image: "/card22.png",
+      title: "DIVINE FACE MASK",
+      desc:
+        "A nourishing face mask that deeply hydrates and revitalizes your skin with natural ingredients.",
+      price: "₹1800",
+      oldPrice: "₹2200",
+      section: "SKIN THERAPY"
+    },
+    // Hair Therapy - 2 cards
+    {
+      image: "/card11.png",
       title: "DIVINE HAIR OIL",
       desc:
         "Nourish your hair with this ancient formula that strengthens roots and promotes healthy, lustrous hair growth.",
       price: "₹1400",
       oldPrice: "₹1800",
+      section: "HAIR THERAPY"
     },
     {
-      image: "/card11.png",
+      image: "/card12.png",
+      title: "ROYAL HAIR SERUM",
+      desc:
+        "A premium hair serum that repairs damage and adds shine to your tresses with royal care.",
+      price: "₹1600",
+      oldPrice: "₹2000",
+      section: "HAIR THERAPY"
+    },
+    // Ritual Kit - 2 cards
+    {
+      image: "/card21.png",
       title: "SACRED BATH SALT",
       desc:
         "Transform your bathing experience with these therapeutic salts that relax your mind and soothe your body.",
       price: "₹1200",
       oldPrice: "₹1500",
+      section: "RITUAL KIT"
+    },
+    {
+      image: "/card22.png",
+      title: "ROYAL RITUAL SET",
+      desc:
+        "Complete ritual set including bath salts, body oil, and scrub for a complete royal experience.",
+      price: "₹2800",
+      oldPrice: "₹3500",
+      section: "RITUAL KIT"
     },
   ];
   const [sectionIdx, setSectionIdx] = useState(0);
@@ -117,6 +153,26 @@ export default function HomePage({ onAddToCart }) {
     "/home-bg.png"  // You can replace with different images
   ];
   
+  // Automatic slider functionality for Hero Section
+  useEffect(() => {
+    const heroInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(heroInterval);
+  }, [backgroundImages.length]);
+
+
+
+  // Automatic slider functionality for Royal Promises
+  useEffect(() => {
+    const royalInterval = setInterval(() => {
+      setRoyalPromiseSlide((prev) => (prev + 1) % ROYAL_PROMISES.length);
+    }, 6000); // Change every 6 seconds
+
+    return () => clearInterval(royalInterval);
+  }, [ROYAL_PROMISES.length]);
+  
   const handlePrev = () => {
     setSectionIdx((prev) => (prev === 0 ? SECTIONS.length - 1 : prev - 1));
   };
@@ -124,10 +180,10 @@ export default function HomePage({ onAddToCart }) {
     setSectionIdx((prev) => (prev === SECTIONS.length - 1 ? 0 : prev + 1));
   };
   
-  // Card carousel functions
+  // Card carousel functions - now works with pairs of cards
   const handleCardPrev = () => {
     setCardStartIndex((prev) => {
-      const newIndex = Math.max(0, prev - 1);
+      const newIndex = Math.max(0, prev - 2); // Move by 2 cards at a time
       // Update section index based on card position
       const newSectionIndex = Math.floor(newIndex / 2);
       setSectionIdx(newSectionIndex);
@@ -136,7 +192,7 @@ export default function HomePage({ onAddToCart }) {
   };
   const handleCardNext = () => {
     setCardStartIndex((prev) => {
-      const newIndex = Math.min(CARDS.length - 1, prev + 1); // Changed to stop at last card
+      const newIndex = Math.min(CARDS.length - 2, prev + 2); // Move by 2 cards at a time, stop at second-to-last card
       // Update section index based on card position
       const newSectionIndex = Math.floor(newIndex / 2);
       setSectionIdx(newSectionIndex);
@@ -145,7 +201,7 @@ export default function HomePage({ onAddToCart }) {
   };
   const handleTabClick = (idx) => {
     setSectionIdx(idx);
-    // Update card position based on section
+    // Update card position based on section (show first card of each section)
     setCardStartIndex(idx * 2);
   };
 
@@ -200,7 +256,7 @@ export default function HomePage({ onAddToCart }) {
     const isLeftSwipe = distance > 80; // Increased threshold to prevent accidental scrolls
     const isRightSwipe = distance < -80; // Increased threshold to prevent accidental scrolls
 
-    if (isLeftSwipe && cardStartIndex < CARDS.length - 1) { // Changed to stop at last card
+    if (isLeftSwipe && cardStartIndex < CARDS.length - 2) { // Changed to stop at second-to-last card
       handleCardNext();
     }
     if (isRightSwipe && cardStartIndex > 0) {
@@ -233,7 +289,7 @@ export default function HomePage({ onAddToCart }) {
     const isLeftSwipe = distance > 80; // Increased threshold
     const isRightSwipe = distance < -80; // Increased threshold
 
-    if (isLeftSwipe && cardStartIndex < CARDS.length - 1) { // Changed to stop at last card
+    if (isLeftSwipe && cardStartIndex < CARDS.length - 2) { // Changed to stop at second-to-last card
       handleCardNext();
     }
     if (isRightSwipe && cardStartIndex > 0) {
@@ -250,7 +306,7 @@ export default function HomePage({ onAddToCart }) {
     e.preventDefault();
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 50) { // Added minimum threshold
       // Horizontal scroll detected with minimum threshold
-      if (e.deltaX > 0 && cardStartIndex < CARDS.length - 1) { // Changed to stop at last card
+      if (e.deltaX > 0 && cardStartIndex < CARDS.length - 2) { // Changed to stop at second-to-last card
         handleCardNext();
       } else if (e.deltaX < 0 && cardStartIndex > 0) {
         handleCardPrev();
@@ -457,8 +513,8 @@ export default function HomePage({ onAddToCart }) {
             </div>
 
             <div className="col-12 col-md-4 mb-4">
-              <h2 style={{ color: "#61003C", fontWeight: "600" }}>
-                OUR ESSENCE
+              <h2 style={{ color: "#61003C", fontWeight: "600", fontFamily: "'Rose Velt Personal Use Only', serif", fontSize: "1.8rem", letterSpacing: "1px" }}>
+                <span style={{ fontSize: "2.2rem" }}>O</span>UR <span style={{ fontSize: "2.2rem" }}>E</span>SSENCE
               </h2>
               <p style={{ color: "#6B4A18", fontSize: "1.1rem" }}>
                 मृदुः धातूनां केममपूर्वं त्वचि दृश्यते
@@ -631,14 +687,14 @@ export default function HomePage({ onAddToCart }) {
               <h2
                 style={{
                   color: "#61003C",
-                  fontFamily: "Georgia, serif",
+                  fontFamily: "'Rose Velt Personal Use Only', serif",
                   fontWeight: "bold",
                   fontSize: "1.8rem",
                   letterSpacing: "1px",
                   margin: 0,
                 }}
               >
-                STEP INTO ROYAL INDULGENCE
+                <span style={{ fontSize: "2rem" }}>S</span>TEP <span style={{ fontSize: "2rem" }}>I</span>NTO <span style={{ fontSize: "2rem" }}>R</span>OYAL <span style={{ fontSize: "2rem" }}>I</span>NDULGENCE
               </h2>
             </div>
 
@@ -681,15 +737,18 @@ export default function HomePage({ onAddToCart }) {
                                   <h5
                     style={{
                       color: "#4C0A2E",
-                      fontFamily: "Rose Velt",
-                      fontWeight: "600",
+                      fontFamily: "'Rose Velt Personal Use Only', serif",
+                      fontWeight: "normal",
                       textTransform: "uppercase",
                     }}
                   >
-                    {strip1Visible ? "Radiance of the Rajput Ranis — Skin Alchemy" :
-                     strip2Visible ? "Hair Elixirs — Tresses of Tradition" :
-                     strip3Visible ? "Ritual Kits — Anointing Grace" :
-                     "From Palace to You: A Body Ritual"}
+                    {strip1Visible ? 
+                      <><span style={{ fontSize: "24px" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "24px" }}>R</span>AJPUT <span style={{ fontSize: "24px" }}>R</span>ANIS — <span style={{ fontSize: "24px" }}>S</span>KIN <span style={{ fontSize: "24px" }}>A</span>LCHEMY</> :
+                     strip2Visible ? 
+                      <><span style={{ fontSize: "24px" }}>H</span>AIR <span style={{ fontSize: "24px" }}>E</span>LIXIRS — <span style={{ fontSize: "24px" }}>T</span>RESSES OF <span style={{ fontSize: "24px" }}>T</span>RADITION</> :
+                     strip3Visible ? 
+                      <><span style={{ fontSize: "24px" }}>R</span>ITUAL <span style={{ fontSize: "24px" }}>K</span>ITS — <span style={{ fontSize: "24px" }}>A</span>NOINTING <span style={{ fontSize: "24px" }}>G</span>RACE</> :
+                     <><span style={{ fontSize: "24px" }}>F</span>ROM <span style={{ fontSize: "24px" }}>P</span>ALACE TO <span style={{ fontSize: "24px" }}>Y</span>OU: <span style={{ fontSize: "24px" }}>A</span> <span style={{ fontSize: "24px" }}>B</span>ODY <span style={{ fontSize: "24px" }}>R</span>ITUAL</>}
                   </h5>
 
                 <div className="col-md-7 px-0 d-flex flex-column align-items-start text-start">
@@ -725,14 +784,17 @@ export default function HomePage({ onAddToCart }) {
                 <button
                   className="btn mt-3 px-4 py-2"
                   style={{
-                    backgroundColor: "#4C0A2E",
-                    color: "white",
+                    backgroundColor: "#4C0A2E !important",
+                    color: "white !important",
                     borderRadius: "20px",
                     width: "fit-content",
+                    border: "none !important",
+                    outline: "none !important",
+                    boxShadow: "none !important",
                   }}
                 >
                   <Link href="/featured-products" legacyBehavior>
-                    <a style={{ color: 'white', textDecoration: 'none', display: 'block' }}>VIEW PRODUCTS</a>
+                    <a style={{ color: 'white !important', textDecoration: 'none', display: 'block' }}>VIEW PRODUCTS</a>
                   </Link>
                 </button>
               </div>
@@ -771,9 +833,9 @@ export default function HomePage({ onAddToCart }) {
                       style={{
                         backgroundColor: "#6A5013",
                         color: "#FFD700",
-                        fontFamily: "Georgia, serif",
+                        fontFamily: "'Rose Velt Personal Use Only', serif",
                         fontSize: "1.1rem",
-                        fontWeight: 500,
+                        fontWeight: "normal",
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         borderBottomLeftRadius: "0",
@@ -791,7 +853,7 @@ export default function HomePage({ onAddToCart }) {
                         pointerEvents: strip1Visible ? "none" : "auto"
                       }}
                     >
-                      Radiance of the Rajput Ranis — Skin Alchemy
+                      <span style={{ fontSize: "1.3rem" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "1.3rem" }}>R</span>AJPUT <span style={{ fontSize: "1.3rem" }}>R</span>ANIS — <span style={{ fontSize: "1.3rem" }}>S</span>KIN <span style={{ fontSize: "1.3rem" }}>A</span>LCHEMY
                     </div>
 
                     {/* Strip 2 - Hair Elixirs */}
@@ -800,9 +862,9 @@ export default function HomePage({ onAddToCart }) {
                       style={{
                         backgroundColor: "#8F7B4C",
                         color: "#fff",
-                        fontFamily: "Georgia, serif",
+                        fontFamily: "'Rose Velt Personal Use Only', serif",
                         fontSize: "1.1rem",
-                        fontWeight: 500,
+                        fontWeight: "normal",
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         borderBottomLeftRadius: "0",
@@ -820,7 +882,7 @@ export default function HomePage({ onAddToCart }) {
                         pointerEvents: strip2Visible ? "none" : "auto"
                       }}
                     >
-                      Hair Elixirs Tresses of Tradition
+                      <span style={{ fontSize: "1.3rem" }}>H</span>AIR <span style={{ fontSize: "1.3rem" }}>E</span>LIXIRS <span style={{ fontSize: "1.3rem" }}>T</span>RESSES OF <span style={{ fontSize: "1.3rem" }}>T</span>RADITION
                     </div>
 
                     {/* Strip 3 - Ritual Kits */}
@@ -829,9 +891,9 @@ export default function HomePage({ onAddToCart }) {
                       style={{
                         backgroundColor: "#978864",
                         color: "#4e3b00",
-                        fontFamily: "Georgia, serif",
+                        fontFamily: "'Rose Velt Personal Use Only', serif",
                         fontSize: "1.1rem",
-                        fontWeight: 500,
+                        fontWeight: "normal",
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         borderBottomLeftRadius: "0",
@@ -849,7 +911,7 @@ export default function HomePage({ onAddToCart }) {
                         pointerEvents: strip3Visible ? "none" : "auto"
                       }}
                     >
-                      Ritual Kits Anointing Grace
+                      <span style={{ fontSize: "1.3rem" }}>R</span>ITUAL <span style={{ fontSize: "1.3rem" }}>K</span>ITS <span style={{ fontSize: "1.3rem" }}>A</span>NOINTING <span style={{ fontSize: "1.3rem" }}>G</span>RACE
                     </div>
                   </div>
                 </div>
@@ -995,8 +1057,8 @@ export default function HomePage({ onAddToCart }) {
               <img src="/left-design.png" alt="Left Decor" style={{ maxWidth: "30px", opacity: 0.8 }} />
             </div>
             <div className="col-auto text-center">
-              <h2 style={{ fontFamily: "Georgia, serif", color: "#4C0A2E", fontWeight: "bold", fontSize: "1.6rem", letterSpacing: "1px", margin: 0, textTransform: "uppercase" }}>
-                Featured Products
+              <h2 style={{ fontFamily: "'Rose Velt Personal Use Only', serif", color: "#4C0A2E", fontWeight: "bold", fontSize: "1.6rem", letterSpacing: "1px", margin: 0, textTransform: "uppercase" }}>
+                <span style={{ fontSize: "1.8rem" }}>F</span>EATURED <span style={{ fontSize: "1.8rem" }}>P</span>RODUCTS
               </h2>
             </div>
             <div className="col-auto d-flex justify-content-start">
@@ -1079,7 +1141,7 @@ export default function HomePage({ onAddToCart }) {
                 </div>
               </div>
 
-              {/* Desktop: Show carousel cards */}
+              {/* Desktop: Show carousel cards - 2 at a time */}
               <div 
                 className="d-none d-md-flex" 
                 style={{ 
@@ -1111,37 +1173,42 @@ export default function HomePage({ onAddToCart }) {
                   padding: "2px 8px",
                   borderRadius: "4px"
                 }}>
-                  Card {cardStartIndex + 1} of {CARDS.length} • Swipe or scroll to navigate
+                  {CARDS[cardStartIndex]?.section || "Products"} • Cards {cardStartIndex + 1}-{Math.min(cardStartIndex + 2, CARDS.length)} of {CARDS.length}
                 </div>
                 <div style={{ 
                   display: "flex", 
                   gap: "70px", 
-                  transform: `translateX(-${cardStartIndex * 100}%)`,
+                  transform: `translateX(-${(cardStartIndex / 2) * 100}%)`,
                   transition: "transform 0.5s ease-in-out",
                   width: "100%"
                 }}>
-                  {CARDS.map((card, index) => (
-                    <div key={index} className="d-flex flex-column align-items-center mb-4" style={{ minWidth: "calc(50vw - 160px)", maxWidth: "600px", flex: "1" }}>
-                      <div className="card" style={{ width: "100%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
-                        <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
-                          मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
-                          यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
+                  {/* Show 2 cards at a time */}
+                  {Array.from({ length: Math.ceil(CARDS.length / 2) }, (_, pairIndex) => (
+                    <div key={pairIndex} style={{ display: "flex", gap: "70px", minWidth: "calc(100vw - 160px)" }}>
+                      {CARDS.slice(pairIndex * 2, pairIndex * 2 + 2).map((card, cardIndex) => (
+                        <div key={cardIndex} className="d-flex flex-column align-items-center mb-4" style={{ minWidth: "calc(50vw - 160px)", maxWidth: "600px", flex: "1" }}>
+                          <div className="card" style={{ width: "100%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
+                            <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
+                              मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
+                              यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
+                            </div>
+                            <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
+                              Ingredients & Benefits
+                            </div>
+                            <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
+                              <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{card.title}</h5>
+                              <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{card.desc}</p>
+                            </div>
+                          </div>
+                          <div className="d-flex justify-content-between w-100 px-4 mt-2">
+                            <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
+                            <div className="text-end">
+                              <strong>{card.price}</strong>
+                              <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
+                            </div>
+                          </div>
                         </div>
-                        <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
-                          Ingredients & Benefits
-                        </div>
-                        <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
-                          <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{card.title}</h5>
-                          <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{card.desc}</p>
-                        </div>
-                      </div>
-                      <div className="d-flex justify-content-between w-100 px-4 mt-2">
-                        <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
-                        <div className="text-end">
-                          <strong>{card.price}</strong>
-                          <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   ))}
                 </div>
@@ -1153,17 +1220,17 @@ export default function HomePage({ onAddToCart }) {
                   width: 48, 
                   height: 48, 
                   alignSelf: 'center',
-                  opacity: cardStartIndex >= CARDS.length - 1 ? 0.5 : 1,
-                  cursor: cardStartIndex >= CARDS.length - 1 ? 'not-allowed' : 'pointer',
+                  opacity: cardStartIndex >= CARDS.length - 2 ? 0.5 : 1,
+                  cursor: cardStartIndex >= CARDS.length - 2 ? 'not-allowed' : 'pointer',
                   border: '2px solid #333',
-                  backgroundColor: cardStartIndex >= CARDS.length - 1 ? '#f5f5f5' : 'white',
+                  backgroundColor: cardStartIndex >= CARDS.length - 2 ? '#f5f5f5' : 'white',
                   transition: 'all 0.3s ease',
                   position: "absolute",
                   right: "20px",
                   zIndex: 10
                 }} 
                 onClick={handleCardNext} 
-                disabled={cardStartIndex >= CARDS.length - 1}
+                disabled={cardStartIndex >= CARDS.length - 2}
                 aria-label="Next"
               >
                 &#x276F;
@@ -1198,7 +1265,7 @@ export default function HomePage({ onAddToCart }) {
                 style={{
                   position: "absolute",
                   bottom: "10px",
-                  left: "400px",
+                  left: "350px",
                   width: "242px",
                   height: "192px",
                   opacity: 1,
@@ -1209,7 +1276,7 @@ export default function HomePage({ onAddToCart }) {
               {/* Text Content */}
               <h3
                 style={{
-                  fontFamily: "Rose Velt Personal Use Only",
+                  fontFamily: "'Rose Velt Personal Use Only', serif",
                   color: "#FFD700",
                   position: "relative",
                   left: "20px",
@@ -1221,20 +1288,27 @@ export default function HomePage({ onAddToCart }) {
                   marginBottom: "20px",
                 }}
               >
-                {ROYAL_PROMISES[royalPromiseSlide].title}
+                <span style={{ fontSize: "36px" }}>T</span>HE{" "}
+                <span style={{ fontSize: "36px" }}>R</span>OYAL{" "}
+                <span style={{ fontSize: "36px" }}>P</span>ROMISE
               </h3>
 
               <p
                 style={{
-                  fontFamily: "Roman",
+                  fontFamily: "Avenir, sans-serif",
                   color: "white",
                   position: "relative",
                   zIndex: 1,
                   left: "20px",
-                  fontSize: "16px",
+                  fontSize: "14px",
+                  lineHeight: "1.4",
+                  maxWidth: "400px",
+                  fontWeight: "normal",
                 }}
               >
-                {ROYAL_PROMISES[royalPromiseSlide].description}
+                At Raajsi, luxury meets responsibility.Our Royal Promise is<br />
+                built on integrity, transparency, and timeless care<br />
+                — for you and the planet.
               </p>
 
               <p
@@ -1245,11 +1319,14 @@ export default function HomePage({ onAddToCart }) {
                   position: "relative",
                   zIndex: 1,
                   left: "20px",
+                  fontSize: "18px",
+                  lineHeight: "1.3",
                 }}
               >
                 <strong>
                   <em>
-                    {ROYAL_PROMISES[royalPromiseSlide].highlight}
+                    Time-tested formulas derived from ancient sciences and<br />
+                    scriptures.
                   </em>
                 </strong>
               </p>
@@ -1262,11 +1339,13 @@ export default function HomePage({ onAddToCart }) {
                   position: "relative",
                   zIndex: 1,
                   left: "20px",
-                  fontSize: "20px",
+                  fontSize: "16px",
                   fontWeight: "400",
+                  lineHeight: "1.3",
                 }}
               >
-                {ROYAL_PROMISES[royalPromiseSlide].detail}
+                Rooted in Ayurveda and proven through generations of<br />
+                ritual wisdom.
               </p>
 
               {/* Decorative dots - Now functional slider */}
@@ -1318,7 +1397,7 @@ export default function HomePage({ onAddToCart }) {
                     color: "#FFFFFF",
                     borderRadius: "30px",
                     padding: "8px 24px",
-                    fontWeight: "400",
+                    fontWeight: "300",
                     position: "relative",
                     height: "52px",
                     width: "192px",
@@ -1343,7 +1422,7 @@ export default function HomePage({ onAddToCart }) {
                   borderRadius: "20px",
                   objectFit: "contain",
                   transition: "all 0.5s ease",
-                  marginLeft: "80px",
+                  marginLeft: "90px",
                 }}
               />
             </div>
@@ -1363,9 +1442,9 @@ export default function HomePage({ onAddToCart }) {
         <div className="container">
           <h2
             className="text-center mb-5"
-            style={{ fontFamily: "Georgia, serif", color: "#2c1e1e" }}
+            style={{ fontFamily: "'Rose Velt Personal Use Only', serif", color: "#2c1e1e", fontWeight: "bold", fontSize: "1.6rem", letterSpacing: "1px", textTransform: "uppercase" }}
           >
-            BLOGS
+            <span style={{ fontSize: "1.8rem" }}>B</span>LOGS
           </h2>
 
           <div className="row justify-content-center g-4">
@@ -1560,3 +1639,4 @@ export default function HomePage({ onAddToCart }) {
     </>
   );
 }
+

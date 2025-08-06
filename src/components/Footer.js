@@ -86,7 +86,7 @@ const Footer = () => {
                   <div className="d-flex mb-3">
                     <Form.Control
                       type="email"
-                      placeholder=""
+                      placeholder="email address"
                       style={{
                         borderRadius: 0,
                         border: 'none',

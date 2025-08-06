@@ -44,8 +44,8 @@
   display: none !important;
 }
 @font-face {
-  font-family: 'Rose Velt Personal Use';
-  src: url('/fonts/RoseVeltPersonalUse.ttf') format('truetype');
+  font-family: 'Rose Velt Personal Use Only';
+  src: url('/fonts/Rose Velt Personal Use Only.ttf') format('truetype');
 }
 
 /* Prevent horizontal scrolling */

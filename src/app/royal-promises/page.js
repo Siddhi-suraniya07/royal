@@ -5,10 +5,30 @@ import { useEffect, useState } from "react";
 
 export default function RoyalPromise() {
   const [scrollY, setScrollY] = useState(0);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      
+      // Calculate which items should be visible based on scroll position
+      const section = document.querySelector('section:nth-child(2)');
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate scroll progress within the section
+        const scrollProgress = (currentScrollY - sectionTop + windowHeight) / (sectionHeight + windowHeight);
+        const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
+        
+        // Determine which items should be visible
+        const totalItems = 4;
+        const itemsToShow = Math.floor(normalizedProgress * totalItems);
+        const newVisibleItems = Array.from({ length: totalItems }, (_, i) => i < itemsToShow);
+        setVisibleItems(newVisibleItems);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -28,12 +48,15 @@ export default function RoyalPromise() {
       >
         <h2
           style={{
-            fontFamily: "Abel, sans-serif",
+            fontFamily: "'Rose Velt Personal Use Only', serif",
             fontSize: "32px",
             color: "#B48338",
             fontWeight: 400,
             lineHeight: "1.06",
             zIndex: 1,
+            opacity: 1,
+            transform: `translateY(${scrollY * 0.1}px)`,
+            transition: "transform 0.3s ease-out",
           }}
         >
           AT RAAJSI, LUXURY MEETS RESPONSIBILITY.
@@ -45,6 +68,9 @@ export default function RoyalPromise() {
             fontWeight: "500",
             maxWidth: "700px",
             zIndex: 1,
+            opacity: 1,
+            transform: `translateY(${scrollY * 0.05}px)`,
+            transition: "transform 0.3s ease-out",
           }}
           className="text-dark mt-2"
         >
@@ -75,13 +101,14 @@ export default function RoyalPromise() {
               transition: "all 0.3s ease",
               outline: "none",
               fontWeight: "bold",
+              transform: `translateY(${scrollY * 0.02}px)`,
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = "scale(1.15)";
               e.target.style.borderColor = "#8B5A2B";
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
+              e.target.style.transform = `scale(1) translateY(${scrollY * 0.02}px)`;
               e.target.style.borderColor = "#B48338";
             }}
           >
@@ -117,6 +144,8 @@ export default function RoyalPromise() {
             borderRadius: "30px",
             zIndex: -1,
             opacity: 0.5,
+            transform: `translateY(${scrollY * 0.1}px)`,
+            transition: "transform 0.3s ease-out",
           }}
         ></div>
 
@@ -135,7 +164,8 @@ export default function RoyalPromise() {
                   position: "relative",
                   marginTop: "50px",
                   marginLeft: "80px",
-                  transform: "none",
+                  transform: `translateY(${-scrollY * 0.15}px)`,
+                  transition: "transform 0.3s ease-out",
                 }}
               />
             </div>
@@ -144,8 +174,8 @@ export default function RoyalPromise() {
               <div 
                 className="ps-md-5 pt-5"
                 style={{
-                  transform: `translateY(${-scrollY * 0.2}px)`,
-                  transition: "transform 0.1s ease-out",
+                  transform: `translateY(${-scrollY * 0.1}px)`,
+                  transition: "transform 0.3s ease-out",
                   position: "relative",
                   zIndex: 2,
                 }}
@@ -170,13 +200,30 @@ export default function RoyalPromise() {
                     desc: "Approved by ethical standards—never tested on animals, always kind to nature.",
                   },
                 ].map((item, idx) => (
-                  <div key={idx} className="mb-4">
+                  <div 
+                    key={idx} 
+                    className="mb-4"
+                    style={{
+                      opacity: visibleItems[idx] ? 1 : 0.3,
+                      transform: visibleItems[idx] 
+                        ? `translateY(0) scale(1)` 
+                        : `translateY(20px) scale(0.95)`,
+                      transition: `all 0.6s cubic-bezier(0.4, 0, 0.2, 1)`,
+                      filter: visibleItems[idx] ? "blur(0px)" : "blur(1px)",
+                      // Minimize height for second and fourth items
+                      marginBottom: idx === 1 || idx === 3 ? "20px" : "40px",
+                    }}
+                  >
                     {/* Decorative Icon */}
-                    <div className="mb-2">
+                    <div className="mb-2" style={{ marginBottom: idx === 1 || idx === 3 ? "8px" : "16px" }}>
                       <img
                         src="/dot.png"
                         alt="Design"
-                        style={{ width: "12px" }}
+                        style={{ 
+                          width: "12px",
+                          transform: visibleItems[idx] ? "scale(1.2)" : "scale(1)",
+                          transition: "transform 0.4s ease-out",
+                        }}
                       />
                     </div>
 
@@ -186,23 +233,42 @@ export default function RoyalPromise() {
                         fontWeight: "600",
                         fontSize: "14px",
                         lineHeight: "1.4",
-                        marginBottom: "8px",
+                        marginBottom: idx === 1 || idx === 3 ? "4px" : "8px",
+                        transform: visibleItems[idx] ? "translateX(0)" : "translateX(-10px)",
+                        transition: "transform 0.5s ease-out",
                       }}
                     >
                       {item.title}
                     </h6>
 
-                    <ul className="mt-2 ps-3">
-                      <li style={{ fontSize: "13px", color: "#333", lineHeight: "1.5" }}>
+                    <ul className="mt-2 ps-3" style={{ marginTop: idx === 1 || idx === 3 ? "8px" : "16px" }}>
+                      <li 
+                        style={{ 
+                          fontSize: "13px", 
+                          color: "#333", 
+                          lineHeight: "1.5",
+                          transform: visibleItems[idx] ? "translateX(0)" : "translateX(-5px)",
+                          transition: "transform 0.5s ease-out 0.1s",
+                        }}
+                      >
                         {item.desc}
                       </li>
                     </ul>
 
-                    <div className="my-3">
+                    <div className="my-3" style={{ 
+                      marginTop: idx === 1 || idx === 3 ? "12px" : "24px",
+                      marginBottom: idx === 1 || idx === 3 ? "12px" : "24px"
+                    }}>
                       <img
                         src="/line.png"
                         alt="Divider"
-                        style={{ height: "60px", width: "1px" }}
+                        style={{ 
+                          height: idx === 1 || idx === 3 ? "40px" : "60px", 
+                          width: "1px",
+                          opacity: visibleItems[idx] ? 1 : 0.3,
+                          transform: visibleItems[idx] ? "scaleY(1)" : "scaleY(0.8)",
+                          transition: "all 0.4s ease-out 0.2s",
+                        }}
                       />
                     </div>
                   </div>

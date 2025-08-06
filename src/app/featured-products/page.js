@@ -142,7 +142,7 @@ export default function FeaturedProducts() {
                           top: "10px",
                           left: "10px",
                           color: "#fff",
-                          fontSize: "0.75rem",
+                          fontSize: "0.6rem",
                           fontFamily: "Georgia, serif",
                           maxWidth: "65%",
                           lineHeight: "1.4",
@@ -161,7 +161,7 @@ export default function FeaturedProducts() {
                           backgroundColor: "rgba(0, 0, 0, 0.4)",
                           color: "#fff",
                           padding: "4px 10px",
-                          fontSize: "0.7rem",
+                          fontSize: "0.6rem",
                           borderRadius: "20px",
                           fontWeight: 500,
                           fontFamily: "Arial, sans-serif",
@@ -181,12 +181,12 @@ export default function FeaturedProducts() {
                           fontFamily: "Georgia, serif",
                         }}
                       >
-                        <h5 style={{ fontWeight: "bold" }}>
+                        <h5 style={{ fontWeight: "bold", fontSize: "14px" }}>
                           {index % 2 === 0
                             ? "COSMIC BODY OIL"
                             : "LAVISH BODY SCRUB"}
                         </h5>
-                        <p style={{ fontSize: "16px" }}>
+                        <p style={{ fontSize: "12px" }}>
                           {index % 2 === 0
                             ? "Unlock celestial beauty in a bottle. A careful blend of essential oils and natural ingredients that melt into your skin, leaving you nourished and calm."
                             : "A royal touch to desi household ingredients crafted for indulgence. Suitable for all skin types, and achieves smooth skin."}
@@ -208,10 +208,10 @@ export default function FeaturedProducts() {
                         VIEW PRODUCT
                       </button>
                       <div className="text-end">
-                        <strong>₹1800</strong>
+                        <strong style={{ fontSize: "14px" }}>₹1800</strong>
                         <div
                           style={{
-                            fontSize: "0.75rem",
+                            fontSize: "0.6rem",
                             textDecoration: "line-through",
                             color: "gray",
                           }}
@@ -305,7 +305,7 @@ export default function FeaturedProducts() {
                           top: "10px",
                           left: "10px",
                           color: "#fff",
-                          fontSize: "0.75rem",
+                          fontSize: "0.6rem",
                           fontFamily: "Georgia, serif",
                           maxWidth: "65%",
                           lineHeight: "1.4",
@@ -324,7 +324,7 @@ export default function FeaturedProducts() {
                           backgroundColor: "rgba(0, 0, 0, 0.4)",
                           color: "#fff",
                           padding: "4px 10px",
-                          fontSize: "0.7rem",
+                          fontSize: "0.6rem",
                           borderRadius: "20px",
                           fontWeight: 500,
                           fontFamily: "Arial, sans-serif",
@@ -344,12 +344,12 @@ export default function FeaturedProducts() {
                           fontFamily: "Georgia, serif",
                         }}
                       >
-                        <h5 style={{ fontWeight: "bold" }}>
+                        <h5 style={{ fontWeight: "bold", fontSize: "14px" }}>
                           {index % 2 === 0
                             ? "COSMIC BODY OIL"
                             : "LAVISH BODY SCRUB"}
                         </h5>
-                        <p style={{ fontSize: "16px" }}>
+                        <p style={{ fontSize: "12px" }}>
                           {index % 2 === 0
                             ? "Unlock celestial beauty in a bottle. A careful blend of essential oils and natural ingredients that melt into your skin, leaving you nourished and calm."
                             : "A royal touch to desi household ingredients crafted for indulgence. Suitable for all skin types, and achieves smooth skin."}
@@ -371,10 +371,10 @@ export default function FeaturedProducts() {
                         VIEW PRODUCT
                       </button>
                       <div className="text-end">
-                        <strong>₹1800</strong>
+                        <strong style={{ fontSize: "14px" }}>₹1800</strong>
                         <div
                           style={{
-                            fontSize: "0.75rem",
+                            fontSize: "0.6rem",
                             textDecoration: "line-through",
                             color: "gray",
                           }}
@@ -468,7 +468,7 @@ export default function FeaturedProducts() {
                           top: "10px",
                           left: "10px",
                           color: "#fff",
-                          fontSize: "0.75rem",
+                          fontSize: "0.6rem",
                           fontFamily: "Georgia, serif",
                           maxWidth: "65%",
                           lineHeight: "1.4",
@@ -487,7 +487,7 @@ export default function FeaturedProducts() {
                           backgroundColor: "rgba(0, 0, 0, 0.4)",
                           color: "#fff",
                           padding: "4px 10px",
-                          fontSize: "0.7rem",
+                          fontSize: "0.6rem",
                           borderRadius: "20px",
                           fontWeight: 500,
                           fontFamily: "Arial, sans-serif",
@@ -507,12 +507,12 @@ export default function FeaturedProducts() {
                           fontFamily: "Georgia, serif",
                         }}
                       >
-                        <h5 style={{ fontWeight: "bold" }}>
+                        <h5 style={{ fontWeight: "bold", fontSize: "14px" }}>
                           {index % 2 === 0
                             ? "COSMIC BODY OIL"
                             : "LAVISH BODY SCRUB"}
                         </h5>
-                        <p style={{ fontSize: "16px" }}>
+                        <p style={{ fontSize: "12px" }}>
                           {index % 2 === 0
                             ? "Unlock celestial beauty in a bottle. A careful blend of essential oils and natural ingredients that melt into your skin, leaving you nourished and calm."
                             : "A royal touch to desi household ingredients crafted for indulgence. Suitable for all skin types, and achieves smooth skin."}
@@ -534,10 +534,10 @@ export default function FeaturedProducts() {
                         VIEW PRODUCT
                       </button>
                       <div className="text-end">
-                        <strong>₹1800</strong>
+                        <strong style={{ fontSize: "14px" }}>₹1800</strong>
                         <div
                           style={{
-                            fontSize: "0.75rem",
+                            fontSize: "0.6rem",
                             textDecoration: "line-through",
                             color: "gray",
                           }}
