@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import './Footer.css'; 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import {
   FaInstagram,
@@ -21,31 +22,31 @@ const Footer = () => {
       <div style={{ backgroundColor: '#BA7E38' }} className="py-3">
         <Container>
           <Row className="text-center text-md-left justify-content-center">
-                         <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-               <img src="/f1.png" alt="No Tests On Animals" style={{ height: '30px', marginRight: '10px' }} />
-               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Tests On Animals</span>
-             </Col>
-             <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-               <img src="/f2.png" alt="No Animal Ingredients" style={{ height: '30px', marginRight: '10px' }} />
-               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Animal-Derived Ingredients</span>
-             </Col>
-             <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
-               <img src="/f3.png" alt="No Gluten" style={{ height: '30px', marginRight: '10px' }} />
-               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Gluten, Or Gluten Byproducts</span>
-             </Col>
-             <Col md={3} xs={6} className="d-flex align-items-center justify-content-center">
-               <img src="/f4.png" alt="Recyclable Packaging" style={{ height: '30px', marginRight: '10px' }} />
-               <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>Recyclable Packaging</span>
-             </Col>
+            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+              <img src="/f1.png" alt="No Tests On Animals" style={{ height: '30px', marginRight: '10px' }} />
+              <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Tests On Animals</span>
+            </Col>
+            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+              <img src="/f2.png" alt="No Animal Ingredients" style={{ height: '30px', marginRight: '10px' }} />
+              <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Animal-Derived Ingredients</span>
+            </Col>
+            <Col md={3} xs={6} className="mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+              <img src="/f3.png" alt="No Gluten" style={{ height: '30px', marginRight: '10px' }} />
+              <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>No Gluten, Or Gluten Byproducts</span>
+            </Col>
+            <Col md={3} xs={6} className="d-flex align-items-center justify-content-center">
+              <img src="/f4.png" alt="Recyclable Packaging" style={{ height: '30px', marginRight: '10px' }} />
+              <span style={{ fontSize: '0.9rem', color: '#FFFFFF' }}>Recyclable Packaging</span>
+            </Col>
           </Row>
         </Container>
       </div>
 
-            {/* Main Footer Section */}
+      {/* Main Footer Section */}
       <div style={{ backgroundColor: '#4C0A2E', color: 'white', padding: '40px 0', height: '300px' }}>
         <Container>
           <Row className="text-md-left">
-                         {/* Logo */}
+            {/* Logo */}
             <Col md={3} className="mb-8 d-flex flex-column align-items-start justify-content-start">
               <img src="/royal-logo.png" alt="Raajsi Logo" style={{ width: '120px', marginTop: '20px' }} />
             </Col>
@@ -80,23 +81,20 @@ const Footer = () => {
 
               <Form>
                 <div className="mb-3">
-                  {/* <label style={{ color: 'white', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>
-                    Email Address
-                  </label> */}
                   <div className="d-flex mb-3">
                     <Form.Control
                       type="email"
-                      placeholder="email address"
+                      placeholder="Email Address"
                       style={{
                         borderRadius: 0,
                         border: 'none',
+                        color: 'white',
                         borderBottom: '1px solid #ccc',
                         backgroundColor: 'transparent',
-                        color: 'white',
                         flex: 1,
                         padding: '8px 0'
                       }}
-                      className="me-3"
+                      className="me-3 white-placeholder"
                     />
                     <Button
                       variant="light"
@@ -114,6 +112,12 @@ const Footer = () => {
                       Subscribe
                     </Button>
                   </div>
+                   <style >{`
+    .white-placeholder::placeholder {
+      color: white;      /* Makes placeholder visible */
+      opacity: 1;        /* Full opacity so it's bright */
+    }
+  `}</style>
                 </div>
 
                 <Form.Check
@@ -160,16 +164,22 @@ const Footer = () => {
         <Container>
           <Row>
             <Col md={6} className="d-flex align-items-center justify-content-center justify-content-md-start">
-              <FaRegCopyright style={{ marginRight: '5px' }} /> 2024 Raajsi. All Rights Reserved.
+              <FaRegCopyright style={{ marginRight: '5px' }} /> 2025 Raajsi. All Rights Reserved.
             </Col>
-                         <Col md={6} className="d-flex justify-content-center justify-content-md-end">
-               <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Terms & Conditions</a>
-               <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Privacy Policy</a>
-             </Col>
+            <Col md={6} className="d-flex justify-content-center justify-content-md-end">
+              <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Terms & Conditions</a>
+              <a href="#" className="text-white mx-3" style={{ fontSize: '0.9rem', textDecoration: 'none' }}>Privacy Policy</a>
+            </Col>
           </Row>
         </Container>
       </div>
+
       <style jsx>{`
+        .white-placeholder::placeholder {
+          color: white;
+          opacity: 0.9;
+        }
+
         @media (max-width: 600px) {
           .py-3, .py-3 > .container, .py-3 > .container > .row {
             padding: 10px 0 !important;

@@ -5,33 +5,44 @@ import { useEffect, useState } from "react";
 
 export default function RoyalPromise() {
   const [scrollY, setScrollY] = useState(0);
-  const [visibleItems, setVisibleItems] = useState([]);
+  const [visibleItems, setVisibleItems] = useState([true, true, true, true]); // Default all visible
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
-      
-      // Calculate which items should be visible based on scroll position
-      const section = document.querySelector('section:nth-child(2)');
-      if (section) {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const windowHeight = window.innerHeight;
-        
-        // Calculate scroll progress within the section
-        const scrollProgress = (currentScrollY - sectionTop + windowHeight) / (sectionHeight + windowHeight);
-        const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
-        
-        // Determine which items should be visible
-        const totalItems = 4;
-        const itemsToShow = Math.floor(normalizedProgress * totalItems);
-        const newVisibleItems = Array.from({ length: totalItems }, (_, i) => i < itemsToShow);
-        setVisibleItems(newVisibleItems);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          setScrollY(currentScrollY);
+          
+          // Calculate which items should be visible based on scroll position
+          const section = document.querySelector('section:nth-child(2)');
+          if (section) {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress within the section with smoother threshold
+            const scrollProgress = (currentScrollY - sectionTop + windowHeight * 0.8) / (sectionHeight + windowHeight * 0.6);
+            const normalizedProgress = Math.max(0, Math.min(1, scrollProgress));
+            
+            // Determine which items should be visible with improved threshold
+            const totalItems = 4;
+            const itemsToShow = Math.ceil(normalizedProgress * totalItems);
+            const newVisibleItems = Array.from({ length: totalItems }, (_, i) => i < itemsToShow);
+            setVisibleItems(newVisibleItems);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Initial call to set visible items
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -40,10 +51,15 @@ export default function RoyalPromise() {
       <section
         className="d-flex flex-column justify-content-center align-items-center text-center"
         style={{
-          minHeight: "60vh",
+          minHeight: "80vh",
           paddingTop: "120px",
+          paddingBottom: "60px",
           position: "relative",
           backgroundColor: "#fff",
+          backgroundImage: "url('/im1.png')",
+          backgroundSize: "400px 400px",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <h2
@@ -75,15 +91,24 @@ export default function RoyalPromise() {
           className="text-dark mt-2"
         >
           OUR ROYAL PROMISE IS BUILT ON INTEGRITY, TRANSPARENCY, AND TIMELESS
-          CARE – FOR YOU AND THE PLANET.
+          CARE  <br /> -FOR YOU AND THE PLANET.
         </p>
 
-        <div className="mt-4 d-flex justify-content-center">
+        <div className="mt-5 d-flex justify-content-center" style={{ marginTop: "384px" }}>
           <button
             onClick={() => {
-              const nextSection = document.querySelector('section:nth-child(2)');
-              if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' });
+              const cardSection = document.querySelector('#card-section');
+              if (cardSection) {
+                // Scroll to the middle of the card section
+                const sectionTop = cardSection.offsetTop;
+                const sectionHeight = cardSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTo = sectionTop + (sectionHeight / 2) - (windowHeight / 2);
+                
+                window.scrollTo({
+                  top: scrollTo,
+                  behavior: 'smooth'
+                });
               }
             }}
             style={{
@@ -117,7 +142,9 @@ export default function RoyalPromise() {
         </div>
       </section>
 
+      {/* Card Section - Second Section */}
       <section
+        id="card-section"
         className="d-flex align-items-center justify-content-center"
         style={{
           maxWidth: "1400px",
@@ -164,8 +191,7 @@ export default function RoyalPromise() {
                   position: "relative",
                   marginTop: "50px",
                   marginLeft: "80px",
-                  transform: `translateY(${-scrollY * 0.15}px)`,
-                  transition: "transform 0.3s ease-out",
+                  // Image stays static
                 }}
               />
             </div>
@@ -174,10 +200,11 @@ export default function RoyalPromise() {
               <div 
                 className="ps-md-5 pt-5"
                 style={{
-                  transform: `translateY(${-scrollY * 0.1}px)`,
-                  transition: "transform 0.3s ease-out",
+                  transform: `translateY(${-scrollY * 0.1}px) rotateX(${scrollY * 0.0005}deg)`,
+                  transition: "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                   position: "relative",
                   zIndex: 2,
+                  perspective: "1000px",
                 }}
               >
                 {[
@@ -204,14 +231,14 @@ export default function RoyalPromise() {
                     key={idx} 
                     className="mb-4"
                     style={{
-                      opacity: visibleItems[idx] ? 1 : 0.3,
+                      opacity: visibleItems[idx] ? 1 : 0.75,
                       transform: visibleItems[idx] 
-                        ? `translateY(0) scale(1)` 
-                        : `translateY(20px) scale(0.95)`,
-                      transition: `all 0.6s cubic-bezier(0.4, 0, 0.2, 1)`,
-                      filter: visibleItems[idx] ? "blur(0px)" : "blur(1px)",
+                        ? `translateY(${-scrollY * 0.03 * (idx + 1)}px) scale(1) rotateZ(${scrollY * 0.0002 * (idx + 1)}deg)` 
+                        : `translateY(${3 - scrollY * 0.03 * (idx + 1)}px) scale(0.995) rotateZ(${scrollY * 0.0002 * (idx + 1)}deg)`,
+                      transition: `all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
                       // Minimize height for second and fourth items
                       marginBottom: idx === 1 || idx === 3 ? "20px" : "40px",
+                      filter: visibleItems[idx] ? "drop-shadow(0 2px 4px rgba(0,0,0,0.1))" : "drop-shadow(0 1px 2px rgba(0,0,0,0.05))",
                     }}
                   >
                     {/* Decorative Icon */}
@@ -221,8 +248,11 @@ export default function RoyalPromise() {
                         alt="Design"
                         style={{ 
                           width: "12px",
-                          transform: visibleItems[idx] ? "scale(1.2)" : "scale(1)",
-                          transition: "transform 0.4s ease-out",
+                          transform: visibleItems[idx] 
+                            ? `scale(1.15) translateY(${scrollY * 0.004}px) rotate(${scrollY * 0.01}deg)` 
+                            : `scale(1) translateY(${scrollY * 0.004}px) rotate(${scrollY * 0.01}deg)`,
+                          transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                          filter: visibleItems[idx] ? "drop-shadow(0 1px 2px rgba(180, 131, 56, 0.2))" : "none",
                         }}
                       />
                     </div>
@@ -234,8 +264,14 @@ export default function RoyalPromise() {
                         fontSize: "14px",
                         lineHeight: "1.4",
                         marginBottom: idx === 1 || idx === 3 ? "4px" : "8px",
-                        transform: visibleItems[idx] ? "translateX(0)" : "translateX(-10px)",
-                        transition: "transform 0.5s ease-out",
+                        transform: visibleItems[idx] 
+                          ? `translateX(${scrollY * 0.012}px) translateY(${scrollY * 0.002}px)` 
+                          : `translateX(${-2 + scrollY * 0.012}px) translateY(${scrollY * 0.002}px)`,
+                        transition: "transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                        textRendering: "optimizeLegibility",
+                        WebkitFontSmoothing: "antialiased",
+                        MozOsxFontSmoothing: "grayscale",
+                        textShadow: visibleItems[idx] ? "0 1px 2px rgba(180, 131, 56, 0.1)" : "none",
                       }}
                     >
                       {item.title}
@@ -247,8 +283,11 @@ export default function RoyalPromise() {
                           fontSize: "13px", 
                           color: "#333", 
                           lineHeight: "1.5",
-                          transform: visibleItems[idx] ? "translateX(0)" : "translateX(-5px)",
-                          transition: "transform 0.5s ease-out 0.1s",
+                          transform: visibleItems[idx] 
+                            ? `translateX(${scrollY * 0.006}px) translateY(${scrollY * 0.001}px)` 
+                            : `translateX(${-1 + scrollY * 0.006}px) translateY(${scrollY * 0.001}px)`,
+                          transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s",
+                          opacity: visibleItems[idx] ? 1 : 0.85,
                         }}
                       >
                         {item.desc}
@@ -265,9 +304,12 @@ export default function RoyalPromise() {
                         style={{ 
                           height: idx === 1 || idx === 3 ? "40px" : "60px", 
                           width: "1px",
-                          opacity: visibleItems[idx] ? 1 : 0.3,
-                          transform: visibleItems[idx] ? "scaleY(1)" : "scaleY(0.8)",
-                          transition: "all 0.4s ease-out 0.2s",
+                          opacity: visibleItems[idx] ? 1 : 0.5,
+                          transform: visibleItems[idx] 
+                            ? `scaleY(1) translateY(${scrollY * 0.002}px) rotate(${scrollY * 0.005}deg)` 
+                            : `scaleY(0.95) translateY(${scrollY * 0.002}px) rotate(${scrollY * 0.005}deg)`,
+                          transition: "all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s",
+                          filter: visibleItems[idx] ? "drop-shadow(0 1px 1px rgba(0,0,0,0.1))" : "none",
                         }}
                       />
                     </div>

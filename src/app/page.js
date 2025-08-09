@@ -513,22 +513,49 @@ export default function HomePage({ onAddToCart }) {
             </div>
 
             <div className="col-12 col-md-4 mb-4">
-              <h2 style={{ color: "#61003C", fontWeight: "600", fontFamily: "'Rose Velt Personal Use Only', serif", fontSize: "1.8rem", letterSpacing: "1px" }}>
-                <span style={{ fontSize: "2.2rem" }}>O</span>UR <span style={{ fontSize: "2.2rem" }}>E</span>SSENCE
+              <h2 style={{ color: "#61003C", fontWeight: "600", fontFamily: "'Rose Velt Personal Use Only', serif", fontSize: "32px", letterSpacing: "1px" }}>
+                <span style={{ fontSize: "36px" }}>O</span>UR <span style={{ fontSize: "36px" }}>E</span>SSENCE
               </h2>
-              <p style={{ color: "#6B4A18", fontSize: "1.1rem" }}>
+              <p style={{ 
+                fontSize: "24px",
+                fontFamily: "Abel, sans-serif",
+                fontStyle: "normal",
+                fontWeight: "400",
+                background: "linear-gradient(45deg, #6F572A 0%, #D5A751 50%, #6F572A 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text"
+              }}>
                 मृदुः धातूनां केममपूर्वं त्वचि दृश्यते
                 <br />
                 यथा विद्यास्ति चैतन्यं गुणैरेव न सायकेः
               </p>
-              <p className="fst-italic mt-2">
+              <p className="fst-italic mt-2" style={{ 
+                fontFamily: "Avenir, sans-serif",
+                fontSize: "24px",
+                fontWeight: "400",
+                letterSpacing: "0%",
+                lineHeight: "110%",
+                fontStyle: "oblique"
+              }}>
                 Raajsi is a premium ayurvedic beauty and wellness brand with a
                 royal touch.
               </p>
               <Link href="/our-essence" passHref legacyBehavior>
                 <a
-                  className="btn btn-warning mt-3 px-4 py-2"
-                  style={{ borderRadius: "25px" }}
+                  className="btn mt-5 px-4 py-2"
+                  style={{ 
+                    borderRadius: "25px",
+                    fontSize: "16px",
+                    color: "#FFFFFF",
+                    fontWeight: "400",
+                    backgroundColor: "#BA7E38",
+                    border: "none",
+                    height: "50px",
+                    width: "180px",
+                    textAlign: "center",
+                    lineHeight: "35px"
+                  }}
                 >
                   EXPLORE ESSENCE
                 </a>
@@ -650,360 +677,380 @@ export default function HomePage({ onAddToCart }) {
       `}</style>
 
       <section
-        id="royal-indulgence-section"
-        className="position-relative"
+  id="royal-indulgence-section"
+  className="position-relative"
+  style={{
+    backgroundImage: "url('/background3.png')",
+    backgroundRepeat: "repeat",
+    backgroundSize: "cover",
+    marginTop: "170px",
+    minHeight: "106vh",
+    paddingTop: "190px",
+    paddingBottom: "80px",
+  }}
+>
+  {/* Scroll trigger logic */}
+  <script dangerouslySetInnerHTML={{
+    __html: `
+      document.addEventListener("DOMContentLoaded", function () {
+        const lastStrip = document.querySelectorAll('.left-text-strip')[2];
+        if (lastStrip) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Wait for animation duration before scrolling
+                setTimeout(() => {
+                  const currentSection = document.getElementById('royal-indulgence-section');
+                  const nextSection = currentSection.nextElementSibling;
+                  if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }, 1000); // matches your CSS animation timing
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 1 });
+          observer.observe(lastStrip);
+        }
+      });
+    `
+  }} />
+  
+  <div
+    className="position-absolute w-100"
+    style={{
+      top: "30px",
+      left: 0,
+      textAlign: "center",
+    }}
+  >
+    <div className="row step-royal-row justify-content-center align-items-center">
+      <div className="col-auto d-flex justify-content-end">
+        <img
+          src="/right-design.png"
+          alt="Left Icon"
+          style={{
+            maxWidth: "40px",
+            transform: "rotate(180deg)",
+            opacity: 0.8,
+          }}
+        />
+      </div>
+
+      <div className="col-auto">
+        <h2
+          style={{
+            color: "#61003C",
+            fontFamily: "'Rose Velt Personal Use Only', serif",
+            fontWeight: "bold",
+            fontSize: "1.8rem",
+            letterSpacing: "1px",
+            margin: 0,
+          }}
+        >
+          <span style={{ fontSize: "2rem" }}>S</span>TEP <span style={{ fontSize: "2rem" }}>I</span>NTO <span style={{ fontSize: "2rem" }}>R</span>OYAL <span style={{ fontSize: "2rem" }}>I</span>NDULGENCE
+        </h2>
+      </div>
+
+      <div className="col-auto d-flex justify-content-start">
+        <img
+          src="/right-design.png"
+          alt="Right Icon"
+          style={{
+            maxWidth: "40px",
+            opacity: 0.8,
+          }}
+        />
+      </div>
+    </div>
+
+    <div className="container" style={{ marginTop: "50px" }}>
+      <div
+        className="row mx-auto shadow-lg p-4"
         style={{
-          backgroundImage: "url('/background3.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "cover",
-          marginTop: "170px",
-          minHeight: "106vh",
-          paddingTop: "190px",
-          paddingBottom: "80px",
+          borderRadius: "20px",
+          backgroundColor: "white",
+          maxWidth: "80%",
+          position: "relative",
+          overflow: "hidden",
+          minHeight: "400px",
+          transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+          transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(-5px)" : "translateY(0)",
+          boxShadow: (strip1Visible || strip2Visible || strip3Visible) ? "0 8px 25px rgba(0,0,0,0.15)" : "0 4px 15px rgba(0,0,0,0.1)"
         }}
       >
         <div
-          className="position-absolute w-100"
-          style={{
-            top: "30px",
-            left: 0,
-            textAlign: "center",
+          className="col-md-7 d-flex flex-column align-items-start fade-in-left"
+          style={{ 
+            marginTop: "40px",
+            transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(0)" : "translateY(20px)",
+            opacity: (strip1Visible || strip2Visible || strip3Visible) ? 1 : 0.8,
+            transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
           }}
         >
-          <div className="row step-royal-row justify-content-center align-items-center">
-            <div className="col-auto d-flex justify-content-end">
-              <img
-                src="/right-design.png"
-                alt="Left Icon"
-                style={{
-                  maxWidth: "40px",
-                  transform: "rotate(180deg)",
-                  opacity: 0.8,
-                }}
-              />
-            </div>
+          <h5
+            style={{
+              color: "#4C0A2E",
+              fontFamily: "'Rose Velt Personal Use Only', serif",
+              fontWeight: "normal",
+              textTransform: "uppercase",
+            }}
+          >
+            {strip1Visible ? 
+              <><span style={{ fontSize: "24px" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "24px" }}>R</span>AJPUT <span style={{ fontSize: "24px" }}>R</span>ANIS — <span style={{ fontSize: "24px" }}>S</span>KIN <span style={{ fontSize: "24px" }}>A</span>LCHEMY</> :
+             strip2Visible ? 
+              <><span style={{ fontSize: "24px" }}>H</span>AIR <span style={{ fontSize: "24px" }}>E</span>LIXIRS — <span style={{ fontSize: "24px" }}>T</span>RESSES OF <span style={{ fontSize: "24px" }}>T</span>RADITION</> :
+             strip3Visible ? 
+              <><span style={{ fontSize: "24px" }}>R</span>ITUAL <span style={{ fontSize: "24px" }}>K</span>ITS — <span style={{ fontSize: "24px" }}>A</span>NOINTING <span style={{ fontSize: "24px" }}>G</span>RACE</> :
+             <><span style={{ fontSize: "24px" }}>F</span>ROM <span style={{ fontSize: "24px" }}>P</span>ALACE TO <span style={{ fontSize: "24px" }}>Y</span>OU: <span style={{ fontSize: "24px" }}>A</span> <span style={{ fontSize: "24px" }}>B</span>ODY <span style={{ fontSize: "24px" }}>R</span>ITUAL</>}
+          </h5>
 
-            <div className="col-auto">
-              <h2
-                style={{
-                  color: "#61003C",
-                  fontFamily: "'Rose Velt Personal Use Only', serif",
-                  fontWeight: "bold",
-                  fontSize: "1.8rem",
-                  letterSpacing: "1px",
-                  margin: 0,
-                }}
-              >
-                <span style={{ fontSize: "2rem" }}>S</span>TEP <span style={{ fontSize: "2rem" }}>I</span>NTO <span style={{ fontSize: "2rem" }}>R</span>OYAL <span style={{ fontSize: "2rem" }}>I</span>NDULGENCE
-              </h2>
-            </div>
-
-            <div className="col-auto d-flex justify-content-start">
-              <img
-                src="/right-design.png"
-                alt="Right Icon"
-                style={{
-                  maxWidth: "40px",
-                  opacity: 0.8,
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="container" style={{ marginTop: "50px" }}>
-            <div
-              className="row mx-auto shadow-lg p-4"
+          <div className="col-md-7 px-0 d-flex flex-column align-items-start text-start">
+            <p
               style={{
-                borderRadius: "20px",
-                backgroundColor: "white",
-                maxWidth: "80%",
-                position: "relative",
-                overflow: "hidden",
-                minHeight: "400px",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-                transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(-5px)" : "translateY(0)",
-                boxShadow: (strip1Visible || strip2Visible || strip3Visible) ? "0 8px 25px rgba(0,0,0,0.15)" : "0 4px 15px rgba(0,0,0,0.1)"
+                fontSize: "14px",
+                font: "Avenir",
+                fontStyle: "roman",
+                fontWeight: "400",
+                color: "#333",
+                lineHeight: "114%",
+                letterSpacing: "0%",
               }}
             >
+              Rani Padmavati of Chittor indulged in luxurious urban
+              rituals — an age-old body remedy made with sandalwood,
+              turmeric, lentils, and rose petals. Applied before her
+              ceremonial baths, this exfoliating paste, followed by herbal
+              oil massages, wasn’t just for beauty — it was a sacred act
+              of self-rejuvenation. At Raajsi, we revive this royal
+              tradition through our body oils, scrubs, and soaps, bringing
+              timeless radiance to your modern-day rituals.
+            </p>
+          </div>
+
+          <p className="fst-italic" style={{ fontSize: "0.95rem" }}>
+            {strip1Visible ? "Discover your royal radiance." :
+             strip2Visible ? "Nourish your royal tresses." :
+             strip3Visible ? "Experience royal rituals." :
+             "Step into royal indulgence."}
+          </p>
+
+          <button
+            className="btn mt-3 px-4 py-2"
+            style={{
+              backgroundColor: "#4C0A2E !important",
+              color: "white !important",
+              borderRadius: "20px",
+              width: "fit-content",
+              border: "none !important",
+              outline: "none !important",
+              boxShadow: "none !important",
+            }}
+          >
+            <Link href="/featured-products" legacyBehavior>
+              <a style={{ color: 'white !important', textDecoration: 'none', display: 'block' }}>VIEW PRODUCTS</a>
+            </Link>
+          </button>
+        </div>
+
+        <div className="col-md-5 text-center mt-4 mt-md-0">
+          <img
+            src={strip1Visible ? "/image3.png" : 
+                 strip2Visible ? "/image4.png" : 
+                 strip3Visible ? "/image5.png" : "/image3.png"}
+            alt={strip1Visible ? "Skin Alchemy" : 
+                 strip2Visible ? "Hair Elixirs" : 
+                 strip3Visible ? "Ritual Kits" : "Royal Ritual"}
+            className="img-fluid"
+            style={{
+              borderTopLeftRadius: "100px",
+              borderTopRightRadius: "100px",
+              maxHeight: "380px",
+              objectFit: "cover",
+              transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+              transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(0)" : "translateY(15px)",
+              opacity: (strip1Visible || strip2Visible || strip3Visible) ? 1 : 0.9,
+            }}
+          />
+        </div>
+      </div>
+
+      <section>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-12">
               <div
-                className="col-md-7 d-flex flex-column align-items-start fade-in-left"
-                style={{ 
-                  marginTop: "40px",
-                  transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(0)" : "translateY(20px)",
-                  opacity: (strip1Visible || strip2Visible || strip3Visible) ? 1 : 0.8,
-                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
+                className="left-text-strip px-4 py-4"
+                style={{
+                  backgroundColor: "#6A5013",
+                  color: "#FFD700",
+                  fontFamily: "'Rose Velt Personal Use Only', serif",
+                  fontSize: "1.1rem",
+                  fontWeight: "normal",
+                  borderTopLeftRadius: "20px",
+                  borderTopRightRadius: "20px",
+                  borderBottomLeftRadius: "0",
+                  borderBottomRightRadius: "0",
+                  textAlign: "center",
+                  maxWidth: "82%",
+                  margin: "0 auto",
+                  marginTop: "-30px",
+                  cursor: "pointer",
+                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                  position: "relative",
+                  zIndex: 10,
+                  opacity: strip1Visible ? 0 : 1,
+                  transform: strip1Visible ? "translateY(20px)" : "translateY(0)",
+                  pointerEvents: strip1Visible ? "none" : "auto"
                 }}
               >
-                                  <h5
-                    style={{
-                      color: "#4C0A2E",
-                      fontFamily: "'Rose Velt Personal Use Only', serif",
-                      fontWeight: "normal",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {strip1Visible ? 
-                      <><span style={{ fontSize: "24px" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "24px" }}>R</span>AJPUT <span style={{ fontSize: "24px" }}>R</span>ANIS — <span style={{ fontSize: "24px" }}>S</span>KIN <span style={{ fontSize: "24px" }}>A</span>LCHEMY</> :
-                     strip2Visible ? 
-                      <><span style={{ fontSize: "24px" }}>H</span>AIR <span style={{ fontSize: "24px" }}>E</span>LIXIRS — <span style={{ fontSize: "24px" }}>T</span>RESSES OF <span style={{ fontSize: "24px" }}>T</span>RADITION</> :
-                     strip3Visible ? 
-                      <><span style={{ fontSize: "24px" }}>R</span>ITUAL <span style={{ fontSize: "24px" }}>K</span>ITS — <span style={{ fontSize: "24px" }}>A</span>NOINTING <span style={{ fontSize: "24px" }}>G</span>RACE</> :
-                     <><span style={{ fontSize: "24px" }}>F</span>ROM <span style={{ fontSize: "24px" }}>P</span>ALACE TO <span style={{ fontSize: "24px" }}>Y</span>OU: <span style={{ fontSize: "24px" }}>A</span> <span style={{ fontSize: "24px" }}>B</span>ODY <span style={{ fontSize: "24px" }}>R</span>ITUAL</>}
-                  </h5>
-
-                <div className="col-md-7 px-0 d-flex flex-column align-items-start text-start">
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      font: "Avenir",
-                      fontStyle: "roman",
-                      fontWeight: "400",
-                      color: "#333",
-                      lineHeight: "114%",
-                      letterSpacing: "0%",
-                    }}
-                  >
-                    Rani Padmavati of Chittor indulged in luxurious urban
-                    rituals — an age-old body remedy made with sandalwood,
-                    turmeric, lentils, and rose petals. Applied before her
-                    ceremonial baths, this exfoliating paste, followed by herbal
-                    oil massages, wasn’t just for beauty — it was a sacred act
-                    of self-rejuvenation. At Raajsi, we revive this royal
-                    tradition through our body oils, scrubs, and soaps, bringing
-                    timeless radiance to your modern-day rituals.
-                  </p>
-                </div>
-
-                <p className="fst-italic" style={{ fontSize: "0.95rem" }}>
-                  {strip1Visible ? "Discover your royal radiance." :
-                   strip2Visible ? "Nourish your royal tresses." :
-                   strip3Visible ? "Experience royal rituals." :
-                   "Step into royal indulgence."}
-                </p>
-
-                <button
-                  className="btn mt-3 px-4 py-2"
-                  style={{
-                    backgroundColor: "#4C0A2E !important",
-                    color: "white !important",
-                    borderRadius: "20px",
-                    width: "fit-content",
-                    border: "none !important",
-                    outline: "none !important",
-                    boxShadow: "none !important",
-                  }}
-                >
-                  <Link href="/featured-products" legacyBehavior>
-                    <a style={{ color: 'white !important', textDecoration: 'none', display: 'block' }}>VIEW PRODUCTS</a>
-                  </Link>
-                </button>
+                <span style={{ fontSize: "1.3rem" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "1.3rem" }}>R</span>AJPUT <span style={{ fontSize: "1.3rem" }}>R</span>ANIS — <span style={{ fontSize: "1.3rem" }}>S</span>KIN <span style={{ fontSize: "1.3rem" }}>A</span>LCHEMY
               </div>
 
-              <div className="col-md-5 text-center mt-4 mt-md-0">
-                <img
-                  src={strip1Visible ? "/image3.png" : 
-                       strip2Visible ? "/image4.png" : 
-                       strip3Visible ? "/image5.png" : "/image3.png"}
-                  alt={strip1Visible ? "Skin Alchemy" : 
-                       strip2Visible ? "Hair Elixirs" : 
-                       strip3Visible ? "Ritual Kits" : "Royal Ritual"}
-                  className="img-fluid"
-                  style={{
-                    borderTopLeftRadius: "100px",
-                    borderTopRightRadius: "100px",
-                    maxHeight: "380px",
-                    objectFit: "cover",
-                    transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transform: (strip1Visible || strip2Visible || strip3Visible) ? "translateY(0)" : "translateY(15px)",
-                    opacity: (strip1Visible || strip2Visible || strip3Visible) ? 1 : 0.9,
-                  }}
-                />
+              <div
+                className="left-text-strip px-4 py-4"
+                style={{
+                  backgroundColor: "#8F7B4C",
+                  color: "#fff",
+                  fontFamily: "'Rose Velt Personal Use Only', serif",
+                  fontSize: "1.1rem",
+                  fontWeight: "normal",
+                  borderTopLeftRadius: "20px",
+                  borderTopRightRadius: "20px",
+                  borderBottomLeftRadius: "0",
+                  borderBottomRightRadius: "0",
+                  textAlign: "center",
+                  maxWidth: "82%",
+                  margin: "0 auto",
+                  marginTop: "-20px",
+                  cursor: "pointer",
+                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                  position: "relative",
+                  zIndex: 10,
+                  opacity: strip2Visible ? 0 : 1,
+                  transform: strip2Visible ? "translateY(20px)" : "translateY(0)",
+                  pointerEvents: strip2Visible ? "none" : "auto"
+                }}
+              >
+                <span style={{ fontSize: "1.3rem" }}>H</span>AIR <span style={{ fontSize: "1.3rem" }}>E</span>LIXIRS <span style={{ fontSize: "1.3rem" }}>T</span>RESSES OF <span style={{ fontSize: "1.3rem" }}>T</span>RADITION
+              </div>
+
+              <div
+                className="left-text-strip px-4 py-4"
+                style={{
+                  backgroundColor: "#978864",
+                  color: "#4e3b00",
+                  fontFamily: "'Rose Velt Personal Use Only', serif",
+                  fontSize: "1.1rem",
+                  fontWeight: "normal",
+                  borderTopLeftRadius: "20px",
+                  borderTopRightRadius: "20px",
+                  borderBottomLeftRadius: "0",
+                  borderBottomRightRadius: "0",
+                  textAlign: "center",
+                  maxWidth: "82%",
+                  margin: "0 auto",
+                  marginTop: "-20px",
+                  cursor: "pointer",
+                  transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                  position: "relative",
+                  zIndex: 10,
+                  opacity: strip3Visible ? 0 : 1,
+                  transform: strip3Visible ? "translateY(20px)" : "translateY(0)",
+                  pointerEvents: strip3Visible ? "none" : "auto"
+                }}
+              >
+                <span style={{ fontSize: "1.3rem" }}>R</span>ITUAL <span style={{ fontSize: "1.3rem" }}>K</span>ITS <span style={{ fontSize: "1.3rem" }}>A</span>NOINTING <span style={{ fontSize: "1.3rem" }}>G</span>RACE
               </div>
             </div>
-
-            <section>
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-12">
-                    {/* Scroll-triggered Cards */}
-                    
-                    {/* Strip 1 - Skin Alchemy */}
-                    <div
-                      className="left-text-strip px-4 py-4"
-                      style={{
-                        backgroundColor: "#6A5013",
-                        color: "#FFD700",
-                        fontFamily: "'Rose Velt Personal Use Only', serif",
-                        fontSize: "1.1rem",
-                        fontWeight: "normal",
-                        borderTopLeftRadius: "20px",
-                        borderTopRightRadius: "20px",
-                        borderBottomLeftRadius: "0",
-                        borderBottomRightRadius: "0",
-                        textAlign: "center",
-                        maxWidth: "82%",
-                        margin: "0 auto",
-                        marginTop: "-30px",
-                        cursor: "pointer",
-                        transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                        position: "relative",
-                        zIndex: 10,
-                        opacity: strip1Visible ? 0 : 1,
-                        transform: strip1Visible ? "translateY(20px)" : "translateY(0)",
-                        pointerEvents: strip1Visible ? "none" : "auto"
-                      }}
-                    >
-                      <span style={{ fontSize: "1.3rem" }}>R</span>ADIANCE OF THE <span style={{ fontSize: "1.3rem" }}>R</span>AJPUT <span style={{ fontSize: "1.3rem" }}>R</span>ANIS — <span style={{ fontSize: "1.3rem" }}>S</span>KIN <span style={{ fontSize: "1.3rem" }}>A</span>LCHEMY
-                    </div>
-
-                    {/* Strip 2 - Hair Elixirs */}
-                    <div
-                      className="left-text-strip px-4 py-4"
-                      style={{
-                        backgroundColor: "#8F7B4C",
-                        color: "#fff",
-                        fontFamily: "'Rose Velt Personal Use Only', serif",
-                        fontSize: "1.1rem",
-                        fontWeight: "normal",
-                        borderTopLeftRadius: "20px",
-                        borderTopRightRadius: "20px",
-                        borderBottomLeftRadius: "0",
-                        borderBottomRightRadius: "0",
-                        textAlign: "center",
-                        maxWidth: "82%",
-                        margin: "0 auto",
-                        marginTop: "-20px",
-                        cursor: "pointer",
-                        transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                        position: "relative",
-                        zIndex: 10,
-                        opacity: strip2Visible ? 0 : 1,
-                        transform: strip2Visible ? "translateY(20px)" : "translateY(0)",
-                        pointerEvents: strip2Visible ? "none" : "auto"
-                      }}
-                    >
-                      <span style={{ fontSize: "1.3rem" }}>H</span>AIR <span style={{ fontSize: "1.3rem" }}>E</span>LIXIRS <span style={{ fontSize: "1.3rem" }}>T</span>RESSES OF <span style={{ fontSize: "1.3rem" }}>T</span>RADITION
-                    </div>
-
-                    {/* Strip 3 - Ritual Kits */}
-                    <div
-                      className="left-text-strip px-4 py-4"
-                      style={{
-                        backgroundColor: "#978864",
-                        color: "#4e3b00",
-                        fontFamily: "'Rose Velt Personal Use Only', serif",
-                        fontSize: "1.1rem",
-                        fontWeight: "normal",
-                        borderTopLeftRadius: "20px",
-                        borderTopRightRadius: "20px",
-                        borderBottomLeftRadius: "0",
-                        borderBottomRightRadius: "0",
-                        textAlign: "center",
-                        maxWidth: "82%",
-                        margin: "0 auto",
-                        marginTop: "-20px",
-                        cursor: "pointer",
-                        transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-                        position: "relative",
-                        zIndex: 10,
-                        opacity: strip3Visible ? 0 : 1,
-                        transform: strip3Visible ? "translateY(20px)" : "translateY(0)",
-                        pointerEvents: strip3Visible ? "none" : "auto"
-                      }}
-                    >
-                      <span style={{ fontSize: "1.3rem" }}>R</span>ITUAL <span style={{ fontSize: "1.3rem" }}>K</span>ITS <span style={{ fontSize: "1.3rem" }}>A</span>NOINTING <span style={{ fontSize: "1.3rem" }}>G</span>RACE
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </section>
+    </div>
+  </div>
+</section>
 
-      <style jsx>{`
-        @media (max-width: 600px) {
-          section.position-relative {
-            margin-top: 40px !important;
-            min-height: unset !important;
-            padding-top: 40px !important;
-            padding-bottom: 30px !important;
-          }
-          .position-absolute.w-100 {
-            position: static !important;
-            top: unset !important;
-            left: unset !important;
-            text-align: center !important;
-          }
-          .row.justify-content-center.align-items-center {
-            flex-direction: column !important;
-            gap: 10px !important;
-          }
-          .row.mx-auto.shadow-lg.p-4 {
-            flex-direction: column !important;
-            max-width: 100% !important;
-            padding: 12px !important;
-            border-radius: 12px !important;
-          }
-          .col-md-7.d-flex.flex-column.align-items-start.fade-in-left {
-            align-items: center !important;
-            margin-top: 0 !important;
-            width: 100% !important;
-            text-align: center !important;
-          }
-          .col-md-7.px-0.d-flex.flex-column.align-items-start.text-start {
-            align-items: center !important;
-            text-align: center !important;
-            width: 100% !important;
-            padding: 0 !important;
-          }
-          .col-md-5.text-center.mt-4.mt-md-0 {
-            margin-top: 18px !important;
-            width: 100% !important;
-          }
-          .col-md-5.text-center.mt-4.mt-md-0 img {
-            max-height: 280px !important;
-            border-top-left-radius: 50px !important;
-            border-top-right-radius: 50px !important;
-          }
-          /* Move Royal Indulge strips upward on mobile */
-          .left-text-strip {
-            margin-top: -30px !important;
-          }
-          .left-text-strip:nth-child(2) {
-            margin-top: -20px !important;
-          }
-          .left-text-strip:nth-child(3) {
-            margin-top: -20px !important;
-          }
-          /* Mobile: Make Royal Indulge strips wider to match card */
-          .left-text-strip {
-            max-width: 100% !important;
-          }
-          /* Mobile: Fix Royal Promises section images */
-          .royal-promise-section {
-            height: auto !important;
-            min-height: 400px !important;
-            max-width: 95% !important;
-            margin: 30px auto !important;
-          }
-          .royal-promise-section .row {
-            flex-direction: column !important;
-            height: auto !important;
-          }
-          .royal-promise-section .col-md-6 {
-            width: 100% !important;
-            height: auto !important;
-            margin-bottom: 20px !important;
-          }
-          .royal-promise-section img {
-            max-width: 100% !important;
-            height: auto !important;
-            max-height: 300px !important;
-            object-fit: contain !important;
-          }
-        }
-      `}</style>
+<style jsx>{`
+  @media (max-width: 600px) {
+    section.position-relative {
+      margin-top: 40px !important;
+      min-height: unset !important;
+      padding-top: 40px !important;
+      padding-bottom: 30px !important;
+    }
+    .position-absolute.w-100 {
+      position: static !important;
+      top: unset !important;
+      left: unset !important;
+      text-align: center !important;
+    }
+    .row.justify-content-center.align-items-center {
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+    .row.mx-auto.shadow-lg.p-4 {
+      flex-direction: column !important;
+      max-width: 100% !important;
+      padding: 12px !important;
+      border-radius: 12px !important;
+    }
+    .col-md-7.d-flex.flex-column.align-items-start.fade-in-left {
+      align-items: center !important;
+      margin-top: 0 !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .col-md-7.px-0.d-flex.flex-column.align-items-start.text-start {
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    .col-md-5.text-center.mt-4.mt-md-0 {
+      margin-top: 18px !important;
+      width: 100% !important;
+    }
+    .col-md-5.text-center.mt-4.mt-md-0 img {
+      max-height: 280px !important;
+      border-top-left-radius: 50px !important;
+      border-top-right-radius: 50px !important;
+    }
+    .left-text-strip {
+      margin-top: -30px !important;
+    }
+    .left-text-strip:nth-child(2) {
+      margin-top: -20px !important;
+    }
+    .left-text-strip:nth-child(3) {
+      margin-top: -20px !important;
+    }
+    .left-text-strip {
+      max-width: 100% !important;
+    }
+    .royal-promise-section {
+      height: auto !important;
+      min-height: 400px !important;
+      max-width: 95% !important;
+      margin: 30px auto !important;
+    }
+    .royal-promise-section .row {
+      flex-direction: column !important;
+      height: auto !important;
+    }
+    .royal-promise-section .col-md-6 {
+      width: 100% !important;
+      height: auto !important;
+      margin-bottom: 20px !important;
+    }
+    .royal-promise-section img {
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: 300px !important;
+      object-fit: contain !important;
+    }
+  }
+`}</style>
+
       <style jsx>{`
         @media (max-width: 600px) {
           .step-royal-row {
@@ -1050,195 +1097,467 @@ export default function HomePage({ onAddToCart }) {
       `}</style>
 
       {/* Replace the featured products section with the carousel */}
-      <section id="featured-products-section" className="featured-products-section py-5" style={{ backgroundColor: "#fff" }}>
-        <div className="container">
-          <div className="row justify-content-center align-items-center mb-4">
-            <div className="col-auto d-flex justify-content-end">
-              <img src="/left-design.png" alt="Left Decor" style={{ maxWidth: "30px", opacity: 0.8 }} />
-            </div>
-            <div className="col-auto text-center">
-              <h2 style={{ fontFamily: "'Rose Velt Personal Use Only', serif", color: "#4C0A2E", fontWeight: "bold", fontSize: "1.6rem", letterSpacing: "1px", margin: 0, textTransform: "uppercase" }}>
-                <span style={{ fontSize: "1.8rem" }}>F</span>EATURED <span style={{ fontSize: "1.8rem" }}>P</span>RODUCTS
-              </h2>
-            </div>
-            <div className="col-auto d-flex justify-content-start">
-              <img src="/right-design.png" alt="Right Decor" style={{ maxWidth: "30px", opacity: 0.8 }} />
-            </div>
-          </div>
-        </div>
-        {/* Tabs for section switching */}
-        <div className="row justify-content-center my-4">
-          <div className="d-flex justify-content-center align-items-center" style={{ backgroundColor: "#f5f0eb", borderRadius: "30px", padding: "6px 10px", maxWidth: "600px" }}>
-            {SECTIONS.map((s, idx) => (
-              <button
-                key={s.key}
-                className="me-2"
+  <section
+  id="featured-products-section"
+  className="featured-products-section py-5"
+  style={{ backgroundColor: "#fff" }}
+>
+  <div className="container">
+    <div className="row justify-content-center align-items-center mb-4">
+      <div className="col-auto d-flex justify-content-end">
+        <img
+          src="/left-design.png"
+          alt="Left Decor"
+          style={{ maxWidth: "30px", opacity: 0.8 }}
+        />
+      </div>
+      <div className="col-auto text-center">
+        <h2
+          style={{
+            fontFamily: "'Rose Velt Personal Use Only', serif",
+            color: "#4C0A2E",
+            fontWeight: "bold",
+            fontSize: "1.6rem",
+            letterSpacing: "1px",
+            margin: 0,
+            textTransform: "uppercase",
+          }}
+        >
+          <span style={{ fontSize: "1.8rem" }}>F</span>EATURED{" "}
+          <span style={{ fontSize: "1.8rem" }}>P</span>RODUCTS
+        </h2>
+      </div>
+      <div className="col-auto d-flex justify-content-start">
+        <img
+          src="/right-design.png"
+          alt="Right Decor"
+          style={{ maxWidth: "30px", opacity: 0.8 }}
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* Tabs for section switching */}
+  <div className="row justify-content-center my-4">
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        backgroundColor: "#f5f0eb",
+        borderRadius: "30px",
+        padding: "6px 10px",
+        maxWidth: "600px",
+      }}
+    >
+      {SECTIONS.map((s, idx) => (
+        <button
+          key={s.key}
+          className="me-2"
+          style={{
+            backgroundColor: idx === sectionIdx ? "#4C0A2E" : "transparent",
+            color: idx === sectionIdx ? "#fff" : "#4C0A2E",
+            border: "none",
+            borderRadius: "25px",
+            padding: "6px 18px",
+            fontSize: "0.9rem",
+            fontWeight: "500",
+            transition: "background 0.2s, color 0.2s",
+          }}
+          onClick={() => handleTabClick(idx)}
+        >
+          {s.badge}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div className="container-fluid text-center">
+    <div className="container-fluid mt-4">
+      <div
+        className="d-flex justify-content-center align-items-center gap-3 featured-carousel-row"
+        style={{ position: "relative", width: "100%" }}
+      >
+        <button
+          className="btn btn-outline-dark rounded-circle"
+          style={{
+            width: 48,
+            height: 48,
+            alignSelf: "center",
+            opacity: cardStartIndex === 0 ? 0.5 : 1,
+            cursor: cardStartIndex === 0 ? "not-allowed" : "pointer",
+            border: "2px solid #333",
+            backgroundColor: cardStartIndex === 0 ? "#f5f5f5" : "white",
+            transition: "all 0.3s ease",
+            position: "absolute",
+            left: "20px",
+            zIndex: 10,
+          }}
+          onClick={handleCardPrev}
+          disabled={cardStartIndex === 0}
+          aria-label="Previous"
+        >
+          &#x276E;
+        </button>
+
+        {/* Mobile: Show only one card */}
+        <div className="d-block d-md-none">
+          <div
+            className="col-12 d-flex flex-column align-items-center mb-4"
+            style={{ minWidth: 0 }}
+          >
+            <div
+              className="card"
+              style={{
+                width: "85vw",
+                maxWidth: "85vw",
+                height: "350px",
+                borderRadius: "15px",
+                backgroundImage: `url(${
+                  CARDS[sectionIdx % CARDS.length].image
+                })`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                position: "relative",
+                overflow: "hidden",
+                border: "none",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              }}
+            >
+              <div
                 style={{
-                  backgroundColor: idx === sectionIdx ? "#4C0A2E" : "transparent",
-                  color: idx === sectionIdx ? "#fff" : "#4C0A2E",
-                  border: "none",
-                  borderRadius: "25px",
-                  padding: "6px 18px",
-                  fontSize: "0.9rem",
-                  fontWeight: "500",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-                onClick={() => handleTabClick(idx)}
-              >
-                {s.badge}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="container-fluid text-center">
-          <div className="container-fluid mt-4">
-            <div className="d-flex justify-content-center align-items-center gap-3 featured-carousel-row" style={{ position: "relative", width: "100%" }}>
-              <button 
-                className="btn btn-outline-dark rounded-circle" 
-                style={{ 
-                  width: 48, 
-                  height: 48, 
-                  alignSelf: 'center',
-                  opacity: cardStartIndex === 0 ? 0.5 : 1,
-                  cursor: cardStartIndex === 0 ? 'not-allowed' : 'pointer',
-                  border: '2px solid #333',
-                  backgroundColor: cardStartIndex === 0 ? '#f5f5f5' : 'white',
-                  transition: 'all 0.3s ease',
                   position: "absolute",
-                  left: "20px",
-                  zIndex: 10
-                }} 
-                onClick={handleCardPrev} 
-                disabled={cardStartIndex === 0}
-                aria-label="Previous"
+                  top: "15px",
+                  left: "15px",
+                  color: "#fff",
+                  fontSize: "0.85rem",
+                  fontFamily: "Georgia, serif",
+                  maxWidth: "70%",
+                  lineHeight: "1.5",
+                  padding: "10px 12px",
+                  textShadow: "0 2px 4px rgba(0, 0, 0, 0.8)",
+                  fontWeight: "500",
+                  letterSpacing: "0.5px",
+                }}
               >
-                &#x276E;
-              </button>
-              
-              {/* Mobile: Show only one card */}
-              <div className="d-block d-md-none">
-                <div className="col-12 d-flex flex-column align-items-center mb-4" style={{ minWidth: 0 }}>
-                  <div className="card" style={{ width: "85vw", maxWidth: "85vw", height: "350px", borderRadius: "15px", backgroundImage: `url(${CARDS[sectionIdx % CARDS.length].image})`, backgroundSize: "cover", backgroundPosition: "center", position: "relative", overflow: "hidden" }}>
-                    <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
-                      मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
-                      यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
-                    </div>
-                    <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
-                      Ingredients & Benefits
-                    </div>
-                    <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
-                      <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{CARDS[sectionIdx % CARDS.length].title}</h5>
-                      <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{CARDS[sectionIdx % CARDS.length].desc}</p>
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-between w-100 px-4 mt-2">
-                    <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
-                    <div className="text-end">
-                      <strong>{CARDS[sectionIdx % CARDS.length].price}</strong>
-                      <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {CARDS[sectionIdx % CARDS.length].oldPrice}</div>
-                    </div>
-                  </div>
+                मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
+                यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  backgroundColor: "rgba(0, 0, 0, 0.4)",
+                  color: "#fff",
+                  padding: "4px 10px",
+                  fontSize: "0.7rem",
+                  borderRadius: "20px",
+                  fontWeight: 500,
+                  fontFamily: "Arial, sans-serif",
+                }}
+              >
+                Ingredients & Benefits
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  width: "100%",
+                  color: "#fff",
+                  padding: "1rem",
+                  fontFamily: "Georgia, serif",
+                  marginTop: "40px",
+                }}
+              >
+                <h5
+                  style={{
+                    fontWeight: "bold",
+                    paddingLeft: "10px",
+                    marginBottom: "8px",
+                    marginTop: "18px",
+                    textAlign: "left",
+                  }}
+                >
+                  {CARDS[sectionIdx % CARDS.length].title}
+                </h5>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    paddingLeft: "10px",
+                    marginBottom: "10px",
+                    textAlign: "left",
+                  }}
+                >
+                  {CARDS[sectionIdx % CARDS.length].desc}
+                </p>
+              </div>
+            </div>
+            <div className="d-flex justify-content-between w-100 px-4 mt-2">
+              <Link
+                href="/featured-products"
+                className="btn btn-sm d-flex align-items-center justify-content-center"
+                style={{
+                  backgroundColor: "#8B5E3C",
+                  color: "white",
+                  borderRadius: "30px",
+                  maxWidth: "194px",
+                  maxHeight: "52px",
+                  height: "40px",
+                  minHeight: "40px",
+                  lineHeight: "40px",
+                  padding: "0 24px",
+                  fontWeight: 500,
+                  fontSize: "1rem",
+                }}
+              >
+                VIEW PRODUCT
+              </Link>
+              <div className="text-end">
+                <strong>{CARDS[sectionIdx % CARDS.length].price}</strong>
+                <div
+                  style={{
+                    fontSize: "0.75rem",
+                    textDecoration: "line-through",
+                    color: "gray",
+                  }}
+                >
+                  Get 50% OFF {CARDS[sectionIdx % CARDS.length].oldPrice}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Desktop: Show carousel cards - 2 at a time */}
-              <div 
-                className="d-none d-md-flex" 
-                style={{ 
-                  gap: "70px", 
-                  overflow: "hidden", 
-                  width: "100%",
-                  position: "relative",
-                  padding: "0 80px",
-                  cursor: isDragging ? "grabbing" : "grab"
-                }}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onWheel={handleWheel}
-              >
-                {/* Carousel indicator */}
-                <div style={{ 
-                  position: "absolute", 
-                  top: "-25px", 
-                  left: "50%", 
-                  transform: "translateX(-50%)", 
-                  fontSize: "12px", 
-                  color: "#666",
-                  backgroundColor: "rgba(255,255,255,0.9)",
-                  padding: "2px 8px",
-                  borderRadius: "4px"
-                }}>
-                  {CARDS[cardStartIndex]?.section || "Products"} • Cards {cardStartIndex + 1}-{Math.min(cardStartIndex + 2, CARDS.length)} of {CARDS.length}
-                </div>
-                <div style={{ 
-                  display: "flex", 
-                  gap: "70px", 
-                  transform: `translateX(-${(cardStartIndex / 2) * 100}%)`,
-                  transition: "transform 0.5s ease-in-out",
-                  width: "100%"
-                }}>
-                  {/* Show 2 cards at a time */}
-                  {Array.from({ length: Math.ceil(CARDS.length / 2) }, (_, pairIndex) => (
-                    <div key={pairIndex} style={{ display: "flex", gap: "70px", minWidth: "calc(100vw - 160px)" }}>
-                      {CARDS.slice(pairIndex * 2, pairIndex * 2 + 2).map((card, cardIndex) => (
-                        <div key={cardIndex} className="d-flex flex-column align-items-center mb-4" style={{ minWidth: "calc(50vw - 160px)", maxWidth: "600px", flex: "1" }}>
-                          <div className="card" style={{ width: "100%", height: "350px", backgroundImage: `url(${card.image})`, backgroundSize: "cover", backgroundPosition: "center", borderRadius: "15px", position: "relative", overflow: "hidden" }}>
-                            <div style={{ position: "absolute", top: "10px", left: "10px", color: "#fff", fontSize: "0.75rem", fontFamily: "Georgia, serif", maxWidth: "65%", lineHeight: "1.4", padding: "6px 8px", borderRadius: "6px" }}>
-                              मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
-                              यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
-                            </div>
-                            <div style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "rgba(0, 0, 0, 0.4)", color: "#fff", padding: "4px 10px", fontSize: "0.7rem", borderRadius: "20px", fontWeight: 500, fontFamily: "Arial, sans-serif" }}>
-                              Ingredients & Benefits
-                            </div>
-                            <div style={{ position: "absolute", bottom: "0", width: "100%", color: "#fff", padding: "1rem", fontFamily: "Georgia, serif", marginTop: "40px" }}>
-                              <h5 style={{ fontWeight: "bold", paddingLeft: "10px", marginBottom: "8px", marginTop: "18px", textAlign: "left" }}>{card.title}</h5>
-                              <p style={{ fontSize: "14px", paddingLeft: "10px", marginBottom: "10px", textAlign: "left" }}>{card.desc}</p>
-                            </div>
+        {/* Desktop: Show carousel cards - 2 at a time */}
+        <div
+          className="d-none d-md-flex"
+          style={{
+            gap: "70px",
+            overflow: "hidden",
+            width: "100%",
+            position: "relative",
+            padding: "0 80px",
+            cursor: isDragging ? "grabbing" : "grab",
+          }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onWheel={handleWheel}
+        >
+          {/* Carousel indicator */}
+          <div
+            style={{
+              position: "absolute",
+              top: "-25px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              fontSize: "12px",
+              color: "#666",
+              backgroundColor: "rgba(255,255,255,0.9)",
+              padding: "2px 8px",
+              borderRadius: "4px",
+            }}
+          >
+            {CARDS[cardStartIndex]?.section || "Products"} • Cards{" "}
+            {cardStartIndex + 1}-
+            {Math.min(cardStartIndex + 2, CARDS.length)} of {CARDS.length}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "70px",
+              transform: `translateX(-${
+                (cardStartIndex / 2) * 100
+              }%)`,
+              transition: "transform 0.5s ease-in-out",
+              width: "100%",
+            }}
+          >
+            {/* Show 2 cards at a time */}
+            {Array.from(
+              { length: Math.ceil(CARDS.length / 2) },
+              (_, pairIndex) => (
+                <div
+                  key={pairIndex}
+                  style={{
+                    display: "flex",
+                    gap: "70px",
+                    minWidth: "calc(100vw - 160px)",
+                  }}
+                >
+                  {CARDS.slice(pairIndex * 2, pairIndex * 2 + 2).map(
+                    (card, cardIndex) => (
+                      <div
+                        key={cardIndex}
+                        className="d-flex flex-column align-items-center mb-4"
+                        style={{
+                          minWidth: "calc(50vw - 160px)",
+                          maxWidth: "600px",
+                          flex: "1",
+                        }}
+                      >
+                        <div
+                          className="card"
+                          style={{
+                            width: "100%",
+                            height: "350px",
+                            backgroundImage: `url(${card.image})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            borderRadius: "15px",
+                            position: "relative",
+                            overflow: "hidden",
+                            border: "none",
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                          }}
+                        >
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "15px",
+                              left: "15px",
+                              color: "#fff",
+                              fontSize: "0.85rem",
+                              fontFamily: "Georgia, serif",
+                              maxWidth: "70%",
+                              lineHeight: "1.5",
+                              padding: "10px 12px",
+                              textShadow:
+                                "0 2px 4px rgba(0, 0, 0, 0.8)",
+                              fontWeight: "500",
+                              letterSpacing: "0.5px",
+                            }}
+                          >
+                            मुग्धे! धानुष्कता केयमपूर्वा त्वयि दृश्यते <br />
+                            यया विध्यसि चेतांसि गुणैरेव न सायकैः ॥
                           </div>
-                          <div className="d-flex justify-content-between w-100 px-4 mt-2">
-                            <Link href="/featured-products" className="btn btn-sm d-flex align-items-center justify-content-center" style={{ backgroundColor: "#8B5E3C", color: "white", borderRadius: "30px", maxWidth: "194px", maxHeight: "52px", height: "40px", minHeight: "40px", lineHeight: "40px", padding: "0 24px", fontWeight: 500, fontSize: "1rem" }}>VIEW PRODUCT</Link>
-                            <div className="text-end">
-                              <strong>{card.price}</strong>
-                              <div style={{ fontSize: "0.75rem", textDecoration: "line-through", color: "gray" }}>Get 50% OFF {card.oldPrice}</div>
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "10px",
+                              right: "10px",
+                              backgroundColor:
+                                "rgba(0, 0, 0, 0.4)",
+                              color: "#fff",
+                              padding: "4px 10px",
+                              fontSize: "0.7rem",
+                              borderRadius: "20px",
+                              fontWeight: 500,
+                              fontFamily: "Arial, sans-serif",
+                            }}
+                          >
+                            Ingredients & Benefits
+                          </div>
+                          <div
+                            style={{
+                              position: "absolute",
+                              bottom: "0",
+                              width: "100%",
+                              color: "#fff",
+                              padding: "1rem",
+                              fontFamily: "Georgia, serif",
+                              marginTop: "40px",
+                            }}
+                          >
+                            <h5
+                              style={{
+                                fontWeight: "bold",
+                                paddingLeft: "10px",
+                                marginBottom: "8px",
+                                marginTop: "18px",
+                                textAlign: "left",
+                              }}
+                            >
+                              {card.title}
+                            </h5>
+                            <p
+                              style={{
+                                fontSize: "14px",
+                                paddingLeft: "10px",
+                                marginBottom: "10px",
+                                textAlign: "left",
+                              }}
+                            >
+                              {card.desc}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="d-flex justify-content-between w-100 px-4 mt-2">
+                          <Link
+                            href="/featured-products"
+                            className="btn btn-sm d-flex align-items-center justify-content-center"
+                            style={{
+                              backgroundColor: "#8B5E3C",
+                              color: "white",
+                              borderRadius: "30px",
+                              maxWidth: "194px",
+                              maxHeight: "52px",
+                              height: "40px",
+                              minHeight: "40px",
+                              lineHeight: "40px",
+                              padding: "0 24px",
+                              fontWeight: 500,
+                              fontSize: "1rem",
+                            }}
+                          >
+                            VIEW PRODUCT
+                          </Link>
+                          <div className="text-end">
+                            <strong>{card.price}</strong>
+                            <div
+                              style={{
+                                fontSize: "0.75rem",
+                                textDecoration: "line-through",
+                                color: "gray",
+                              }}
+                            >
+                              Get 50% OFF {card.oldPrice}
                             </div>
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  ))}
+                      </div>
+                    )
+                  )}
                 </div>
-              </div>
-              
-              <button 
-                className="btn btn-outline-dark rounded-circle" 
-                style={{ 
-                  width: 48, 
-                  height: 48, 
-                  alignSelf: 'center',
-                  opacity: cardStartIndex >= CARDS.length - 2 ? 0.5 : 1,
-                  cursor: cardStartIndex >= CARDS.length - 2 ? 'not-allowed' : 'pointer',
-                  border: '2px solid #333',
-                  backgroundColor: cardStartIndex >= CARDS.length - 2 ? '#f5f5f5' : 'white',
-                  transition: 'all 0.3s ease',
-                  position: "absolute",
-                  right: "20px",
-                  zIndex: 10
-                }} 
-                onClick={handleCardNext} 
-                disabled={cardStartIndex >= CARDS.length - 2}
-                aria-label="Next"
-              >
-                &#x276F;
-              </button>
-            </div>
+              )
+            )}
           </div>
         </div>
-      </section>
+
+        <button
+          className="btn btn-outline-dark rounded-circle"
+          style={{
+            width: 48,
+            height: 48,
+            alignSelf: "center",
+            opacity: cardStartIndex >= CARDS.length - 2 ? 0.5 : 1,
+            cursor:
+              cardStartIndex >= CARDS.length - 2
+                ? "not-allowed"
+                : "pointer",
+            border: "2px solid #333",
+            backgroundColor:
+              cardStartIndex >= CARDS.length - 2
+                ? "#f5f5f5"
+                : "white",
+            transition: "all 0.3s ease",
+            position: "absolute",
+            right: "20px",
+            zIndex: 10,
+          }}
+          onClick={handleCardNext}
+          disabled={cardStartIndex >= CARDS.length - 2}
+          aria-label="Next"
+        >
+          &#x276F;
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section
         className="royal-promise-section my-5"
@@ -1508,7 +1827,7 @@ export default function HomePage({ onAddToCart }) {
                     width: "8px",
                     height: "8px",
                     borderRadius: "50%",
-                    backgroundColor: "red",
+                    // backgroundColor: "red",
                   }}
                 />
               </div>
